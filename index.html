@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Auto-Search Tool with Random Words</title>
+    <title>Bing Auto-Search Tool</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -15,28 +14,28 @@
         }
         
         body {
-            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            background: linear-gradient(135deg, #0067b8, #008376, #00a4ef);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 20px;
+            padding: 15px;
             color: #333;
         }
         
         .container {
             width: 100%;
-            max-width: 900px;
+            max-width: 500px;
             background: rgba(255, 255, 255, 0.95);
             border-radius: 20px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
             overflow: hidden;
         }
         
         header {
-            background: linear-gradient(90deg, #4b6cb7, #182848);
+            background: linear-gradient(90deg, #0067b8, #008376);
             color: white;
-            padding: 25px 30px;
+            padding: 25px 20px;
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -53,87 +52,78 @@
             transform: rotate(30deg);
         }
         
-        header h1 {
+        .logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .logo i {
             font-size: 2.5rem;
-            margin-bottom: 10px;
+            color: #ffb900;
+        }
+        
+        header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 8px;
             position: relative;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
         
         header p {
-            font-size: 1.2rem;
+            font-size: 1rem;
             opacity: 0.9;
             position: relative;
-            max-width: 600px;
+            max-width: 400px;
             margin: 0 auto;
         }
         
         .main-content {
-            padding: 30px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 25px;
-        }
-        
-        @media (max-width: 768px) {
-            .main-content {
-                grid-template-columns: 1fr;
-            }
+            padding: 20px;
         }
         
         .control-panel {
-            background: #f8f9fa;
+            background: #f3f8fb;
             border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         }
         
         .panel-title {
             display: flex;
             align-items: center;
             gap: 10px;
-            margin-bottom: 20px;
-            color: #2c3e50;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #e0e6ed;
+            margin-bottom: 15px;
+            color: #0067b8;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #e0f0f7;
         }
         
         .panel-title i {
             font-size: 1.4rem;
-            color: #4b6cb7;
+            color: #008376;
         }
         
         .form-group {
-            margin-bottom: 22px;
+            margin-bottom: 18px;
         }
         
         .form-group label {
             display: block;
             margin-bottom: 8px;
             font-weight: 600;
-            color: #2c3e50;
-            font-size: 1.05rem;
+            color: #005a9e;
+            font-size: 1rem;
             display: flex;
             align-items: center;
             gap: 8px;
         }
         
-        input[type="text"], 
-        input[type="number"],
-        select {
+        input[type="range"] {
             width: 100%;
-            padding: 14px 15px;
-            border: 2px solid #dce1e8;
-            border-radius: 10px;
-            font-size: 1rem;
-            transition: all 0.3s;
-            background: white;
-        }
-        
-        input:focus, select:focus {
-            border-color: #4b6cb7;
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(75, 108, 183, 0.2);
         }
         
         .range-container {
@@ -147,21 +137,24 @@
             min-width: 40px;
             text-align: center;
             font-weight: 700;
-            color: #4b6cb7;
+            color: #0067b8;
             font-size: 1.1rem;
+            background: #e6f4f1;
+            padding: 5px 10px;
+            border-radius: 10px;
         }
         
         .button-group {
             display: flex;
-            gap: 15px;
-            margin-top: 30px;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 20px;
         }
         
         button {
-            flex: 1;
             padding: 16px;
             border: none;
-            border-radius: 10px;
+            border-radius: 12px;
             font-size: 1.1rem;
             font-weight: 600;
             cursor: pointer;
@@ -169,155 +162,115 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         
         #startBtn {
-            background: linear-gradient(90deg, #00b09b, #96c93d);
+            background: linear-gradient(90deg, #107c10, #00a400);
             color: white;
-            box-shadow: 0 4px 10px rgba(0, 176, 155, 0.3);
         }
         
         #startBtn:hover {
-            background: linear-gradient(90deg, #009882, #7db02d);
+            background: linear-gradient(90deg, #0d6a0d, #008c00);
             transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(0, 176, 155, 0.4);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
         }
         
         #stopBtn {
-            background: linear-gradient(90deg, #ff416c, #ff4b2b);
+            background: linear-gradient(90deg, #d83b01, #e81123);
             color: white;
-            box-shadow: 0 4px 10px rgba(255, 65, 108, 0.3);
         }
         
         #stopBtn:hover {
-            background: linear-gradient(90deg, #e03a5f, #e04427);
+            background: linear-gradient(90deg, #c13501, #d10f20);
             transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(255, 65, 108, 0.4);
-        }
-        
-        #resetBtn {
-            background: linear-gradient(90deg, #4A00E0, #8E2DE2);
-            color: white;
-            box-shadow: 0 4px 10px rgba(74, 0, 224, 0.3);
-        }
-        
-        #resetBtn:hover {
-            background: linear-gradient(90deg, #3d00b8, #7a24c7);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(74, 0, 224, 0.4);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
         }
         
         .status-panel {
-            background: #f8f9fa;
+            background: #f3f8fb;
             border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         }
         
         .status-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 18px;
-            margin-bottom: 25px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 15px;
         }
         
         .stat-box {
             background: white;
             border-radius: 12px;
-            padding: 20px 15px;
+            padding: 15px;
             text-align: center;
             box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
-            transition: transform 0.3s;
-        }
-        
-        .stat-box:hover {
-            transform: translateY(-5px);
+            border: 1px solid #e0f0f7;
         }
         
         .stat-value {
-            font-size: 2.4rem;
+            font-size: 1.8rem;
             font-weight: 700;
-            color: #4b6cb7;
-            margin: 10px 0;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            color: #0067b8;
+            margin: 5px 0;
         }
         
         .stat-label {
-            font-size: 1rem;
-            color: #5a6a7f;
+            font-size: 0.9rem;
+            color: #008376;
             font-weight: 500;
         }
         
-        .log-container {
-            background: white;
-            border-radius: 12px;
-            padding: 20px;
-            height: 240px;
-            overflow-y: auto;
-            box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.08);
-        }
-        
-        .log-header {
+        .next-search {
+            background: #e6f4f1;
+            border-radius: 10px;
+            padding: 12px 15px;
+            margin: 15px 0;
             display: flex;
-            justify-content: space-between;
-            margin-bottom: 15px;
-        }
-        
-        .log-entry {
-            padding: 10px 0;
-            border-bottom: 1px solid #eee;
-            font-size: 0.95rem;
-            color: #444;
-            display: flex;
-            align-items: flex-start;
+            align-items: center;
             gap: 10px;
+            font-weight: 500;
+            border-left: 4px solid #008376;
         }
         
-        .log-entry:last-child {
-            border-bottom: none;
-        }
-        
-        .log-icon {
-            color: #4b6cb7;
-            font-size: 0.9rem;
-            margin-top: 3px;
-        }
-        
-        .log-timestamp {
-            color: #7f8c9a;
-            font-size: 0.85rem;
-            min-width: 70px;
+        .next-search i {
+            color: #008376;
+            font-size: 1.2rem;
         }
         
         .progress-container {
             background: white;
             border-radius: 12px;
-            padding: 20px;
-            margin-top: 20px;
+            padding: 15px;
+            margin: 15px 0;
             box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+            border: 1px solid #e0f0f7;
         }
         
         .progress-header {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             font-weight: 600;
-            color: #2c3e50;
+            color: #005a9e;
+            font-size: 0.95rem;
         }
         
         .progress-bar {
-            height: 22px;
-            background: #e0e6ed;
-            border-radius: 12px;
+            height: 20px;
+            background: #e0f0f7;
+            border-radius: 10px;
             overflow: hidden;
             position: relative;
         }
         
         .progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, #4b6cb7, #8e2de2);
-            border-radius: 12px;
+            background: linear-gradient(90deg, #0067b8, #008376);
+            border-radius: 10px;
             width: 0%;
             transition: width 0.5s ease;
         }
@@ -329,77 +282,182 @@
             transform: translate(-50%, -50%);
             color: white;
             font-weight: 600;
+            font-size: 0.8rem;
+        }
+        
+        .log-container {
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            height: 200px;
+            overflow-y: auto;
+            box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e0f0f7;
+        }
+        
+        .log-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+            color: #005a9e;
+            font-weight: 600;
+        }
+        
+        .log-entry {
+            padding: 10px 0;
+            border-bottom: 1px solid #f0f7fa;
             font-size: 0.9rem;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+            color: #444;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+        
+        .log-entry:last-child {
+            border-bottom: none;
+        }
+        
+        .log-icon {
+            color: #008376;
+            font-size: 0.9rem;
+            margin-top: 3px;
+            min-width: 20px;
+        }
+        
+        .log-timestamp {
+            color: #008376;
+            font-size: 0.8rem;
+            min-width: 60px;
+            font-weight: 500;
         }
         
         .disclaimer {
-            margin-top: 25px;
-            padding: 18px;
+            margin-top: 20px;
+            padding: 15px;
             background: #fff8e1;
             border-radius: 12px;
-            border-left: 4px solid #ffc107;
-            font-size: 0.92rem;
+            border-left: 4px solid #ffb900;
+            font-size: 0.85rem;
             color: #7d6608;
-            grid-column: 1 / -1;
         }
         
         .disclaimer strong {
             color: #d35400;
         }
         
-        .next-search {
-            background: #e3f2fd;
-            border-radius: 10px;
+        .search-simulation {
+            margin: 20px 0;
+            background: white;
+            border-radius: 15px;
             padding: 15px;
-            margin-top: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: 500;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e0f0f7;
+            text-align: center;
         }
         
-        .next-search i {
-            color: #4b6cb7;
+        .search-box {
+            position: relative;
+            margin: 10px 0;
+        }
+        
+        .search-box input {
+            width: 100%;
+            padding: 12px 20px 12px 45px;
+            border: 2px solid #e0f0f7;
+            border-radius: 30px;
+            font-size: 1rem;
+            background: #f8fbfd;
+        }
+        
+        .search-box i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #008376;
             font-size: 1.2rem;
         }
         
-        .tab-animation {
+        .search-results {
+            text-align: left;
+            margin-top: 15px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        
+        .result-item {
+            padding: 10px;
+            border-bottom: 1px solid #f0f7fa;
+        }
+        
+        .result-item h3 {
+            color: #0067b8;
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+        
+        .result-item p {
+            font-size: 0.85rem;
+            color: #555;
+        }
+        
+        .mobile-tabs {
             display: flex;
             justify-content: center;
-            margin-top: 15px;
-            gap: 8px;
+            gap: 5px;
+            margin: 15px 0;
         }
         
-        .tab {
-            width: 40px;
-            height: 30px;
-            background: #4b6cb7;
-            border-radius: 6px 6px 0 0;
-            opacity: 0;
-            transform: translateY(10px);
-            transition: all 0.3s ease;
+        .mobile-tab {
+            width: 35px;
+            height: 5px;
+            background: #008376;
+            border-radius: 3px;
+            opacity: 0.3;
         }
         
-        .tab.active {
+        .mobile-tab.active {
             opacity: 1;
-            transform: translateY(0);
+            background: #0067b8;
         }
         
-        .tab:nth-child(2) {
-            background: #8e2de2;
-        }
-        
-        .tab:nth-child(3) {
-            background: #00b09b;
+        @media (max-width: 480px) {
+            header {
+                padding: 20px 15px;
+            }
+            
+            header h1 {
+                font-size: 1.5rem;
+            }
+            
+            .main-content {
+                padding: 15px;
+            }
+            
+            .control-panel, .status-panel {
+                padding: 15px;
+            }
+            
+            .stat-value {
+                font-size: 1.5rem;
+            }
+            
+            button {
+                padding: 14px;
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1><i class="fas fa-robot"></i> Auto-Search Tool</h1>
-            <p>Automate browser searches with random words - Configure searches, delays, and tab closing</p>
+            <div class="logo">
+                <i class="fab fa-microsoft"></i>
+                <h1>Bing Auto-Search</h1>
+            </div>
+            <p>Automate your Bing searches with custom parameters</p>
         </header>
         
         <div class="main-content">
@@ -410,57 +468,52 @@
                 </div>
                 
                 <div class="form-group">
-                    <label for="searchEngine"><i class="fas fa-search"></i> Search Engine</label>
-                    <select id="searchEngine">
-                        <option value="google">Google</option>
-                        <option value="bing">Bing</option>
-                        <option value="yahoo">Yahoo</option>
-                        <option value="duckduckgo">DuckDuckGo</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="searchCount"><i class="fas fa-sync-alt"></i> Number of Searches</label>
+                    <label for="searchCount"><i class="fas fa-search"></i> Number of Searches</label>
                     <div class="range-container">
-                        <input type="range" id="searchCount" min="1" max="30" value="10">
-                        <span class="range-value" id="searchCountValue">10</span>
+                        <input type="range" id="searchCount" min="1" max="20" value="8">
+                        <span class="range-value" id="searchCountValue">8</span>
                     </div>
                 </div>
                 
                 <div class="form-group">
-                    <label for="searchDelay"><i class="fas fa-hourglass-half"></i> Delay Between Searches (seconds)</label>
+                    <label for="searchDelay"><i class="fas fa-hourglass-half"></i> Delay (seconds)</label>
                     <div class="range-container">
-                        <input type="range" id="searchDelay" min="2" max="30" value="5">
-                        <span class="range-value" id="searchDelayValue">5</span>
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="tabCloseTime"><i class="fas fa-window-close"></i> Tab Close Time (seconds)</label>
-                    <div class="range-container">
-                        <input type="range" id="tabCloseTime" min="2" max="60" value="8">
-                        <span class="range-value" id="tabCloseTimeValue">8</span>
+                        <input type="range" id="searchDelay" min="2" max="15" value="4">
+                        <span class="range-value" id="searchDelayValue">4</span>
                     </div>
                 </div>
                 
                 <div class="form-group">
                     <label for="wordCount"><i class="fas fa-font"></i> Words per Search</label>
                     <div class="range-container">
-                        <input type="range" id="wordCount" min="1" max="5" value="2">
+                        <input type="range" id="wordCount" min="1" max="4" value="2">
                         <span class="range-value" id="wordCountValue">2</span>
                     </div>
                 </div>
                 
                 <div class="button-group">
-                    <button id="startBtn"><i class="fas fa-play"></i> Start</button>
-                    <button id="stopBtn"><i class="fas fa-stop"></i> Stop</button>
-                    <button id="resetBtn"><i class="fas fa-redo"></i> Reset</button>
+                    <button id="startBtn"><i class="fas fa-play"></i> Start Auto-Search</button>
+                    <button id="stopBtn"><i class="fas fa-stop"></i> Stop Process</button>
+                </div>
+            </div>
+            
+            <div class="search-simulation">
+                <h3>Current Search Simulation</h3>
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="simulatedSearch" readonly>
+                </div>
+                <div class="search-results">
+                    <div class="result-item">
+                        <h3>Search Results</h3>
+                        <p>Results will appear here during simulation</p>
+                    </div>
                 </div>
             </div>
             
             <div class="status-panel">
                 <div class="panel-title">
-                    <i class="fas fa-chart-line"></i>
+                    <i class="fas fa-chart-bar"></i>
                     <h2>Search Status</h2>
                 </div>
                 
@@ -474,21 +527,11 @@
                         <div class="stat-label">Completed</div>
                         <div class="stat-value" id="completedSearches">0</div>
                     </div>
-                    
-                    <div class="stat-box">
-                        <div class="stat-label">Active Tabs</div>
-                        <div class="stat-value" id="activeTabs">0</div>
-                    </div>
-                    
-                    <div class="stat-box">
-                        <div class="stat-label">Time Left</div>
-                        <div class="stat-value" id="timeRemaining">0s</div>
-                    </div>
                 </div>
                 
                 <div class="next-search">
                     <i class="fas fa-arrow-right"></i>
-                    <span>Next search: <span id="nextSearchTerm">Ready to start</span></span>
+                    <span>Next: <span id="nextSearchTerm">Ready to start</span></span>
                 </div>
                 
                 <div class="progress-container">
@@ -502,103 +545,95 @@
                     </div>
                 </div>
                 
-                <div class="tab-animation">
-                    <div class="tab"></div>
-                    <div class="tab"></div>
-                    <div class="tab"></div>
+                <div class="mobile-tabs">
+                    <div class="mobile-tab"></div>
+                    <div class="mobile-tab"></div>
+                    <div class="mobile-tab"></div>
+                    <div class="mobile-tab"></div>
                 </div>
             </div>
             
             <div class="log-container">
                 <div class="log-header">
-                    <h3><i class="fas fa-list-alt"></i> Activity Log</h3>
+                    <h3><i class="fas fa-list"></i> Activity Log</h3>
                     <span id="logStatus">System Ready</span>
                 </div>
                 <div id="logEntries">
                     <div class="log-entry">
                         <i class="fas fa-info-circle log-icon"></i>
                         <span class="log-timestamp">[System]</span>
-                        <span>Auto-Search Tool initialized. Configure settings and click Start.</span>
+                        <span>Auto-Search Tool initialized</span>
                     </div>
                 </div>
             </div>
             
             <div class="disclaimer">
-                <strong>Note:</strong> Browser pop-up blockers may interfere with this tool. Please allow pop-ups for this site. This tool is for demonstration purposes only. Automated searches should comply with search engines' terms of service.
+                <strong>Note:</strong> This tool simulates Bing searches for demonstration purposes. For actual automated searches in the Bing app, Microsoft provides official reward programs. This simulation runs entirely in your browser.
             </div>
         </div>
     </div>
 
     <script>
-        $(document).ready(function() {
+        document.addEventListener('DOMContentLoaded', function() {
             // Database of random words for searches
             const wordDatabase = [
-                "technology", "innovation", "digital", "future", "artificial intelligence", 
-                "machine learning", "virtual reality", "blockchain", "cybersecurity", "cloud computing",
-                "data science", "internet of things", "robotics", "automation", "augmented reality",
-                "quantum computing", "biotechnology", "nanotechnology", "renewable energy", "sustainability",
-                "space exploration", "autonomous vehicles", "smart cities", "5G networks", "edge computing",
-                "cryptocurrency", "metaverse", "web development", "user experience", "responsive design",
-                "programming languages", "software engineering", "devops", "agile methodology", "big data",
-                "neural networks", "deep learning", "computer vision", "natural language processing", "algorithm"
+                "technology", "innovation", "digital", "future", "AI", 
+                "machine learning", "VR", "blockchain", "cybersecurity", "cloud",
+                "data science", "IoT", "robotics", "automation", "AR",
+                "quantum computing", "biotech", "nano", "renewable energy", "sustainability",
+                "space", "autonomous vehicles", "smart cities", "5G", "edge computing",
+                "crypto", "metaverse", "web dev", "UX", "responsive design",
+                "programming", "software", "devops", "agile", "big data",
+                "neural networks", "deep learning", "computer vision", "NLP", "algorithm",
+                "Bing rewards", "Microsoft", "Windows", "Office", "Azure",
+                "Xbox", "Surface", "productivity", "search engine", "browser"
             ];
             
             // DOM elements
-            const searchEngine = $('#searchEngine');
-            const searchCount = $('#searchCount');
-            const searchDelay = $('#searchDelay');
-            const tabCloseTime = $('#tabCloseTime');
-            const wordCount = $('#wordCount');
-            const searchCountValue = $('#searchCountValue');
-            const searchDelayValue = $('#searchDelayValue');
-            const tabCloseTimeValue = $('#tabCloseTimeValue');
-            const wordCountValue = $('#wordCountValue');
-            const startBtn = $('#startBtn');
-            const stopBtn = $('#stopBtn');
-            const resetBtn = $('#resetBtn');
-            const totalSearches = $('#totalSearches');
-            const completedSearches = $('#completedSearches');
-            const activeTabs = $('#activeTabs');
-            const timeRemaining = $('#timeRemaining');
-            const logEntries = $('#logEntries');
-            const progressFill = $('#progressFill');
-            const progressText = $('#progressText');
-            const progressPercent = $('#progressPercent');
-            const nextSearchTerm = $('#nextSearchTerm');
-            const logStatus = $('#logStatus');
-            const tabs = $('.tab');
+            const searchCount = document.getElementById('searchCount');
+            const searchDelay = document.getElementById('searchDelay');
+            const wordCount = document.getElementById('wordCount');
+            const searchCountValue = document.getElementById('searchCountValue');
+            const searchDelayValue = document.getElementById('searchDelayValue');
+            const wordCountValue = document.getElementById('wordCountValue');
+            const startBtn = document.getElementById('startBtn');
+            const stopBtn = document.getElementById('stopBtn');
+            const totalSearches = document.getElementById('totalSearches');
+            const completedSearches = document.getElementById('completedSearches');
+            const logEntries = document.getElementById('logEntries');
+            const progressFill = document.getElementById('progressFill');
+            const progressText = document.getElementById('progressText');
+            const progressPercent = document.getElementById('progressPercent');
+            const nextSearchTerm = document.getElementById('nextSearchTerm');
+            const logStatus = document.getElementById('logStatus');
+            const tabs = document.querySelectorAll('.mobile-tab');
+            const simulatedSearch = document.getElementById('simulatedSearch');
+            const nextSearchDisplay = document.getElementById('nextSearchTerm');
             
             // State variables
             let isRunning = false;
             let searchCounter = 0;
             let totalSearchCount = 0;
             let completedSearchCount = 0;
-            let activeTabCount = 0;
             let timer = null;
-            let openedWindows = [];
             let nextTerm = "";
             
             // Initialize range values
-            searchCountValue.text(searchCount.val());
-            searchDelayValue.text(searchDelay.val());
-            tabCloseTimeValue.text(tabCloseTime.val());
-            wordCountValue.text(wordCount.val());
+            searchCountValue.textContent = searchCount.value;
+            searchDelayValue.textContent = searchDelay.value;
+            wordCountValue.textContent = wordCount.value;
             
             // Update range value displays
-            searchCount.on('input', function() {
-                searchCountValue.text($(this).val());
+            searchCount.addEventListener('input', function() {
+                searchCountValue.textContent = this.value;
             });
             
-            searchDelay.on('input', function() {
-                searchDelayValue.text($(this).val());
+            searchDelay.addEventListener('input', function() {
+                searchDelayValue.textContent = this.value;
             });
             
-            tabCloseTime.on('input', function() {
-                tabCloseTimeValue.text($(this).val());
-            });
-            
-            wordCount.on('input', function() {
-                wordCountValue.text($(this).val());
+            wordCount.addEventListener('input', function() {
+                wordCountValue.textContent = this.value;
             });
             
             // Generate random search term
@@ -619,82 +654,74 @@
                 const now = new Date();
                 const timestamp = `[${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}:${now.getSeconds().toString().padStart(2, '0')}]`;
                 
-                const logEntry = $(`
-                    <div class="log-entry">
-                        <i class="fas fa-${icon} log-icon"></i>
-                        <span class="log-timestamp">${timestamp}</span>
-                        <span>${message}</span>
-                    </div>
-                `);
+                const logEntry = document.createElement('div');
+                logEntry.className = 'log-entry';
+                logEntry.innerHTML = `
+                    <i class="fas fa-${icon} log-icon"></i>
+                    <span class="log-timestamp">${timestamp}</span>
+                    <span>${message}</span>
+                `;
                 
                 logEntries.prepend(logEntry);
                 
-                // Limit to 15 log entries
-                if (logEntries.children().length > 15) {
-                    logEntries.children().last().remove();
+                // Limit to 8 log entries
+                if (logEntries.children.length > 8) {
+                    logEntries.removeChild(logEntries.lastChild);
                 }
             }
             
             // Update progress bar
             function updateProgress() {
                 const percent = totalSearchCount === 0 ? 0 : Math.round((completedSearchCount / totalSearchCount) * 100);
-                progressFill.css('width', `${percent}%`);
-                progressText.text(`${percent}%`);
-                progressPercent.text(`${percent}%`);
-            }
-            
-            // Calculate time remaining
-            function calculateTimeRemaining() {
-                const remainingSearches = totalSearchCount - completedSearchCount;
-                const delay = parseInt(searchDelay.val());
-                const closeTime = parseInt(tabCloseTime.val());
-                
-                // Estimate time remaining (searches left * delay + close time for the last tab)
-                const seconds = remainingSearches * delay + closeTime;
-                return seconds;
-            }
-            
-            // Update time remaining display
-            function updateTimeRemaining() {
-                const seconds = calculateTimeRemaining();
-                timeRemaining.text(`${seconds}s`);
+                progressFill.style.width = `${percent}%`;
+                progressText.textContent = `${percent}%`;
+                progressPercent.textContent = `${percent}%`;
             }
             
             // Animate tabs
             function animateTabs() {
-                tabs.each(function(index) {
-                    const tab = $(this);
+                tabs.forEach((tab, index) => {
                     setTimeout(() => {
-                        tab.addClass('active');
+                        tab.classList.add('active');
                         setTimeout(() => {
-                            tab.removeClass('active');
+                            tab.classList.remove('active');
                         }, 800);
                     }, index * 300);
                 });
             }
             
+            // Simulate search
+            function simulateSearch(term) {
+                simulatedSearch.value = term;
+                
+                // Simulate search animation
+                simulatedSearch.classList.add('searching');
+                setTimeout(() => {
+                    simulatedSearch.classList.remove('searching');
+                }, 1500);
+            }
+            
             // Start the auto-search process
-            startBtn.on('click', function() {
+            startBtn.addEventListener('click', function() {
                 if (isRunning) return;
                 
                 isRunning = true;
                 searchCounter = 0;
                 completedSearchCount = 0;
-                totalSearchCount = parseInt(searchCount.val());
-                activeTabCount = 0;
+                totalSearchCount = parseInt(searchCount.value);
                 
-                totalSearches.text(totalSearchCount);
-                completedSearches.text('0');
-                activeTabs.text('0');
-                logStatus.text("Running").css("color", "#27ae60");
+                totalSearches.textContent = totalSearchCount;
+                completedSearches.textContent = '0';
+                logStatus.textContent = "Running";
+                logStatus.style.color = "#107c10";
                 
                 addLogEntry("Starting auto-search with random terms", "play-circle");
                 updateProgress();
-                updateTimeRemaining();
                 
                 // Generate first search term
-                nextTerm = generateSearchTerm(wordCount.val());
-                nextSearchTerm.text(nextTerm);
+                nextTerm = generateSearchTerm(wordCount.value);
+                nextSearchTerm.textContent = nextTerm;
+                nextSearchDisplay.textContent = nextTerm;
                 
                 startSearchCycle();
             });
@@ -704,140 +731,44 @@
                 if (!isRunning || searchCounter >= totalSearchCount) {
                     isRunning = false;
                     addLogEntry("Auto-search completed", "check-circle");
-                    logStatus.text("Completed").css("color", "#27ae60");
+                    logStatus.textContent = "Completed";
+                    logStatus.style.color = "#107c10";
                     return;
                 }
                 
                 searchCounter++;
-                activeTabCount++;
-                activeTabs.text(activeTabCount);
                 
-                // Get search URL
-                const engine = searchEngine.val();
-                const term = encodeURIComponent(nextTerm);
-                let url;
-                
-                switch(engine) {
-                    case 'bing':
-                        url = `https://www.bing.com/search?q=${term}`;
-                        break;
-                    case 'yahoo':
-                        url = `https://search.yahoo.com/search?p=${term}`;
-                        break;
-                    case 'duckduckgo':
-                        url = `https://duckduckgo.com/?q=${term}`;
-                        break;
-                    default: // Google
-                        url = `https://www.google.com/search?q=${term}`;
-                }
-                
-                // Open new tab
-                const newWindow = window.open(url, `searchTab${searchCounter}`, 'width=800,height=600');
-                
-                if (!newWindow) {
-                    addLogEntry("Failed to open new tab. Please allow pop-ups for this site.", "exclamation-triangle");
-                    activeTabCount--;
-                    activeTabs.text(activeTabCount);
-                    isRunning = false;
-                    logStatus.text("Stopped").css("color", "#e74c3c");
-                    return;
-                }
-                
-                openedWindows.push(newWindow);
+                // Simulate the search
+                simulateSearch(nextTerm);
                 addLogEntry(`Search #${searchCounter}: "${nextTerm}"`, "search");
                 animateTabs();
                 
                 // Generate next search term
-                nextTerm = generateSearchTerm(wordCount.val());
-                nextSearchTerm.text(nextTerm);
+                nextTerm = generateSearchTerm(wordCount.value);
+                nextSearchTerm.textContent = nextTerm;
                 
-                // Schedule tab closing
-                const closeTime = parseInt(tabCloseTime.val()) * 1000;
+                // Schedule completion
+                const closeTime = 2000; // Simulate search time
                 setTimeout(() => {
-                    try {
-                        newWindow.close();
-                        addLogEntry(`Closed tab for search #${searchCounter}`, "window-close");
-                        completedSearchCount++;
-                        completedSearches.text(completedSearchCount);
-                        activeTabCount--;
-                        activeTabs.text(activeTabCount);
-                        updateProgress();
-                        updateTimeRemaining();
-                        
-                        // Remove from opened windows array
-                        const index = openedWindows.indexOf(newWindow);
-                        if (index !== -1) {
-                            openedWindows.splice(index, 1);
-                        }
-                    } catch (e) {
-                        addLogEntry(`Error closing tab: ${e.message}`, "exclamation-circle");
-                    }
+                    completedSearchCount++;
+                    completedSearches.textContent = completedSearchCount;
+                    updateProgress();
+                    addLogEntry(`Completed search #${searchCounter}`, "check");
                 }, closeTime);
                 
                 // Schedule next search
-                const delay = parseInt(searchDelay.val()) * 1000;
+                const delay = parseInt(searchDelay.value) * 1000;
                 setTimeout(startSearchCycle, delay);
-                
-                updateTimeRemaining();
             }
             
             // Stop the process
-            stopBtn.on('click', function() {
+            stopBtn.addEventListener('click', function() {
                 if (!isRunning) return;
                 
                 isRunning = false;
                 addLogEntry("Process stopped by user", "pause-circle");
-                logStatus.text("Stopped").css("color", "#e74c3c");
-                
-                // Close all opened tabs
-                openedWindows.forEach(window => {
-                    try {
-                        window.close();
-                    } catch (e) {
-                        console.error("Error closing window:", e);
-                    }
-                });
-                
-                openedWindows = [];
-                activeTabCount = 0;
-                activeTabs.text('0');
-            });
-            
-            // Reset everything
-            resetBtn.on('click', function() {
-                isRunning = false;
-                
-                // Close all opened tabs
-                openedWindows.forEach(window => {
-                    try {
-                        window.close();
-                    } catch (e) {
-                        console.error("Error closing window:", e);
-                    }
-                });
-                
-                openedWindows = [];
-                
-                // Reset counters
-                searchCounter = 0;
-                completedSearchCount = 0;
-                totalSearchCount = 0;
-                activeTabCount = 0;
-                
-                // Reset displays
-                totalSearches.text('0');
-                completedSearches.text('0');
-                activeTabs.text('0');
-                timeRemaining.text('0s');
-                progressFill.css('width', '0%');
-                progressText.text('0%');
-                progressPercent.text('0%');
-                nextSearchTerm.text('Ready to start');
-                logStatus.text("System Ready").css("color", "#2c3e50");
-                
-                // Clear logs
-                logEntries.empty();
-                addLogEntry("Reset complete. Ready to start new session", "redo");
+                logStatus.textContent = "Stopped";
+                logStatus.style.color = "#e81123";
             });
         });
     </script>
