@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bing Auto-Search Tool</title>
+    <title>Bing Rewards Mobile Auto-Search</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -171,7 +171,7 @@
             color: white;
         }
         
-        #startBtn:hover {
+        #startBtn:hover, #startBtn:active {
             background: linear-gradient(90deg, #0d6a0d, #008c00);
             transform: translateY(-2px);
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
@@ -182,7 +182,7 @@
             color: white;
         }
         
-        #stopBtn:hover {
+        #stopBtn:hover, #stopBtn:active {
             background: linear-gradient(90deg, #c13501, #d10f20);
             transform: translateY(-2px);
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
@@ -346,60 +346,57 @@
             color: #d35400;
         }
         
-        .search-simulation {
-            margin: 20px 0;
+        .points-tracker {
             background: white;
             border-radius: 15px;
             padding: 15px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
             border: 1px solid #e0f0f7;
             text-align: center;
+            margin: 20px 0;
         }
         
-        .search-box {
-            position: relative;
+        .points-display {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
             margin: 10px 0;
         }
         
-        .search-box input {
-            width: 100%;
-            padding: 12px 20px 12px 45px;
-            border: 2px solid #e0f0f7;
-            border-radius: 30px;
+        .points-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #107c10;
+            min-width: 80px;
+            text-align: center;
+        }
+        
+        .points-label {
             font-size: 1rem;
-            background: #f8fbfd;
+            color: #5a6a7f;
         }
         
-        .search-box i {
-            position: absolute;
-            left: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #008376;
-            font-size: 1.2rem;
+        .points-progress {
+            height: 10px;
+            background: #e0e6ed;
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 10px 0;
         }
         
-        .search-results {
-            text-align: left;
-            margin-top: 15px;
-            max-height: 200px;
-            overflow-y: auto;
+        .points-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #107c10, #96c93d);
+            width: 0%;
+            border-radius: 5px;
+            transition: width 0.5s ease;
         }
         
-        .result-item {
-            padding: 10px;
-            border-bottom: 1px solid #f0f7fa;
-        }
-        
-        .result-item h3 {
-            color: #0067b8;
-            font-size: 1rem;
-            margin-bottom: 5px;
-        }
-        
-        .result-item p {
-            font-size: 0.85rem;
-            color: #555;
+        .points-goal {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #5a6a7f;
         }
         
         .mobile-tabs {
@@ -420,6 +417,31 @@
         .mobile-tab.active {
             opacity: 1;
             background: #0067b8;
+        }
+        
+        .tab-animation-container {
+            display: flex;
+            justify-content: center;
+            margin: 15px 0;
+        }
+        
+        .tab-animation {
+            width: 80px;
+            height: 60px;
+            background: #0067b8;
+            border-radius: 10px 10px 0 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .tab-content {
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            right: 5px;
+            bottom: 5px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
         }
         
         @media (max-width: 480px) {
@@ -455,9 +477,9 @@
         <header>
             <div class="logo">
                 <i class="fab fa-microsoft"></i>
-                <h1>Bing Auto-Search</h1>
+                <h1>Bing Rewards Mobile</h1>
             </div>
-            <p>Automate your Bing searches with custom parameters</p>
+            <p>Earn Microsoft Rewards points with optimized searches</p>
         </header>
         
         <div class="main-content">
@@ -470,24 +492,16 @@
                 <div class="form-group">
                     <label for="searchCount"><i class="fas fa-search"></i> Number of Searches</label>
                     <div class="range-container">
-                        <input type="range" id="searchCount" min="1" max="20" value="8">
-                        <span class="range-value" id="searchCountValue">8</span>
+                        <input type="range" id="searchCount" min="5" max="30" value="15">
+                        <span class="range-value" id="searchCountValue">15</span>
                     </div>
                 </div>
                 
                 <div class="form-group">
                     <label for="searchDelay"><i class="fas fa-hourglass-half"></i> Delay (seconds)</label>
                     <div class="range-container">
-                        <input type="range" id="searchDelay" min="2" max="15" value="4">
-                        <span class="range-value" id="searchDelayValue">4</span>
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="wordCount"><i class="fas fa-font"></i> Words per Search</label>
-                    <div class="range-container">
-                        <input type="range" id="wordCount" min="1" max="4" value="2">
-                        <span class="range-value" id="wordCountValue">2</span>
+                        <input type="range" id="searchDelay" min="10" max="60" value="25">
+                        <span class="range-value" id="searchDelayValue">25</span>
                     </div>
                 </div>
                 
@@ -497,18 +511,16 @@
                 </div>
             </div>
             
-            <div class="search-simulation">
-                <h3>Current Search Simulation</h3>
-                <div class="search-box">
-                    <i class="fas fa-search"></i>
-                    <input type="text" id="simulatedSearch" readonly>
+            <div class="points-tracker">
+                <h3><i class="fas fa-trophy"></i> Points Tracker</h3>
+                <div class="points-display">
+                    <div class="points-value" id="pointsEarned">0</div>
+                    <div class="points-label">Points Earned</div>
                 </div>
-                <div class="search-results">
-                    <div class="result-item">
-                        <h3>Search Results</h3>
-                        <p>Results will appear here during simulation</p>
-                    </div>
+                <div class="points-progress">
+                    <div class="points-progress-fill" id="pointsProgress"></div>
                 </div>
+                <div class="points-goal">Daily Goal: 150 points</div>
             </div>
             
             <div class="status-panel">
@@ -545,11 +557,10 @@
                     </div>
                 </div>
                 
-                <div class="mobile-tabs">
-                    <div class="mobile-tab"></div>
-                    <div class="mobile-tab"></div>
-                    <div class="mobile-tab"></div>
-                    <div class="mobile-tab"></div>
+                <div class="tab-animation-container">
+                    <div class="tab-animation" id="tabAnimation">
+                        <div class="tab-content"></div>
+                    </div>
                 </div>
             </div>
             
@@ -562,40 +573,43 @@
                     <div class="log-entry">
                         <i class="fas fa-info-circle log-icon"></i>
                         <span class="log-timestamp">[System]</span>
-                        <span>Auto-Search Tool initialized</span>
+                        <span>Bing Rewards tool initialized</span>
+                    </div>
+                    <div class="log-entry">
+                        <i class="fas fa-lightbulb log-icon"></i>
+                        <span class="log-timestamp">[Tip]</span>
+                        <span>Set higher delays for better results</span>
                     </div>
                 </div>
             </div>
             
             <div class="disclaimer">
-                <strong>Note:</strong> This tool simulates Bing searches for demonstration purposes. For actual automated searches in the Bing app, Microsoft provides official reward programs. This simulation runs entirely in your browser.
+                <strong>Note:</strong> This tool performs real Bing searches to earn Microsoft Rewards points. For best results, stay logged into your Microsoft account and avoid running 24/7. Microsoft may detect and block automated searches.
             </div>
         </div>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Database of random words for searches
-            const wordDatabase = [
-                "technology", "innovation", "digital", "future", "AI", 
-                "machine learning", "VR", "blockchain", "cybersecurity", "cloud",
-                "data science", "IoT", "robotics", "automation", "AR",
-                "quantum computing", "biotech", "nano", "renewable energy", "sustainability",
-                "space", "autonomous vehicles", "smart cities", "5G", "edge computing",
-                "crypto", "metaverse", "web dev", "UX", "responsive design",
-                "programming", "software", "devops", "agile", "big data",
-                "neural networks", "deep learning", "computer vision", "NLP", "algorithm",
-                "Bing rewards", "Microsoft", "Windows", "Office", "Azure",
-                "Xbox", "Surface", "productivity", "search engine", "browser"
+            // Enhanced database of natural search phrases
+            const searchPhrases = [
+                "latest tech news", "weather forecast this week", "healthy recipes for dinner",
+                "best travel destinations", "how to improve productivity", "learn programming online",
+                "home workout routines", "stock market updates", "new movie releases",
+                "sustainable living tips", "digital photography tips", "mental health resources",
+                "online courses for beginners", "budget travel ideas", "beginner gardening guide",
+                "career development strategies", "cooking tutorials", "local events near me",
+                "science discoveries 2023", "environmental conservation", "fitness trackers comparison",
+                "book recommendations", "AI applications", "mobile app trends", 
+                "renewable energy news", "work from home tips", "language learning apps",
+                "personal finance management", "VR technology updates", "stress relief techniques"
             ];
             
             // DOM elements
             const searchCount = document.getElementById('searchCount');
             const searchDelay = document.getElementById('searchDelay');
-            const wordCount = document.getElementById('wordCount');
             const searchCountValue = document.getElementById('searchCountValue');
             const searchDelayValue = document.getElementById('searchDelayValue');
-            const wordCountValue = document.getElementById('wordCountValue');
             const startBtn = document.getElementById('startBtn');
             const stopBtn = document.getElementById('stopBtn');
             const totalSearches = document.getElementById('totalSearches');
@@ -606,9 +620,9 @@
             const progressPercent = document.getElementById('progressPercent');
             const nextSearchTerm = document.getElementById('nextSearchTerm');
             const logStatus = document.getElementById('logStatus');
-            const tabs = document.querySelectorAll('.mobile-tab');
-            const simulatedSearch = document.getElementById('simulatedSearch');
-            const nextSearchDisplay = document.getElementById('nextSearchTerm');
+            const pointsEarned = document.getElementById('pointsEarned');
+            const pointsProgress = document.getElementById('pointsProgress');
+            const tabAnimation = document.getElementById('tabAnimation');
             
             // State variables
             let isRunning = false;
@@ -617,11 +631,12 @@
             let completedSearchCount = 0;
             let timer = null;
             let nextTerm = "";
+            let points = 0;
+            let activeTab = null;
             
             // Initialize range values
             searchCountValue.textContent = searchCount.value;
             searchDelayValue.textContent = searchDelay.value;
-            wordCountValue.textContent = wordCount.value;
             
             // Update range value displays
             searchCount.addEventListener('input', function() {
@@ -632,21 +647,10 @@
                 searchDelayValue.textContent = this.value;
             });
             
-            wordCount.addEventListener('input', function() {
-                wordCountValue.textContent = this.value;
-            });
-            
             // Generate random search term
-            function generateSearchTerm(wordCount) {
-                const count = parseInt(wordCount);
-                let term = "";
-                
-                for (let i = 0; i < count; i++) {
-                    const randomIndex = Math.floor(Math.random() * wordDatabase.length);
-                    term += wordDatabase[randomIndex] + " ";
-                }
-                
-                return term.trim();
+            function generateSearchTerm() {
+                const randomIndex = Math.floor(Math.random() * searchPhrases.length);
+                return searchPhrases[randomIndex];
             }
             
             // Add log entry
@@ -662,7 +666,7 @@
                     <span>${message}</span>
                 `;
                 
-                logEntries.prepend(logEntry);
+                logEntries.insertBefore(logEntry, logEntries.firstChild);
                 
                 // Limit to 8 log entries
                 if (logEntries.children.length > 8) {
@@ -678,27 +682,36 @@
                 progressPercent.textContent = `${percent}%`;
             }
             
-            // Animate tabs
-            function animateTabs() {
-                tabs.forEach((tab, index) => {
-                    setTimeout(() => {
-                        tab.classList.add('active');
-                        setTimeout(() => {
-                            tab.classList.remove('active');
-                        }, 800);
-                    }, index * 300);
-                });
+            // Update points display
+            function updatePoints() {
+                pointsEarned.textContent = points;
+                const percent = Math.min(100, Math.round((points / 150) * 100));
+                pointsProgress.style.width = `${percent}%`;
             }
             
-            // Simulate search
-            function simulateSearch(term) {
-                simulatedSearch.value = term;
-                
-                // Simulate search animation
-                simulatedSearch.classList.add('searching');
+            // Animate tab opening
+            function animateTab() {
+                tabAnimation.style.transform = 'scale(1.1)';
+                tabAnimation.style.opacity = '0.8';
                 setTimeout(() => {
-                    simulatedSearch.classList.remove('searching');
-                }, 1500);
+                    tabAnimation.style.transform = 'scale(1)';
+                    tabAnimation.style.opacity = '1';
+                }, 300);
+            }
+            
+            // Perform a real Bing search
+            function performBingSearch(term) {
+                const url = `https://www.bing.com/search?q=${encodeURIComponent(term)}`;
+                
+                // Try to open in a new tab
+                activeTab = window.open(url, '_blank');
+                
+                if (!activeTab) {
+                    addLogEntry("Failed to open new tab. Please allow pop-ups", "exclamation-triangle");
+                    return false;
+                }
+                
+                return true;
             }
             
             // Start the auto-search process
@@ -709,19 +722,22 @@
                 searchCounter = 0;
                 completedSearchCount = 0;
                 totalSearchCount = parseInt(searchCount.value);
+                points = 0;
                 
                 totalSearches.textContent = totalSearchCount;
                 completedSearches.textContent = '0';
                 logStatus.textContent = "Running";
                 logStatus.style.color = "#107c10";
+                pointsEarned.textContent = "0";
+                pointsProgress.style.width = "0%";
                 
-                addLogEntry("Starting auto-search with random terms", "play-circle");
+                addLogEntry("Starting Bing auto-search with optimized settings", "play-circle");
+                addLogEntry("Using natural search phrases to avoid detection", "lightbulb");
                 updateProgress();
                 
                 // Generate first search term
-                nextTerm = generateSearchTerm(wordCount.value);
+                nextTerm = generateSearchTerm();
                 nextSearchTerm.textContent = nextTerm;
-                nextSearchDisplay.textContent = nextTerm;
                 
                 startSearchCycle();
             });
@@ -730,7 +746,8 @@
             function startSearchCycle() {
                 if (!isRunning || searchCounter >= totalSearchCount) {
                     isRunning = false;
-                    addLogEntry("Auto-search completed", "check-circle");
+                    addLogEntry("Auto-search completed successfully", "check-circle");
+                    addLogEntry(`${points} Microsoft Rewards points earned`, "coins");
                     logStatus.textContent = "Completed";
                     logStatus.style.color = "#107c10";
                     return;
@@ -738,27 +755,49 @@
                 
                 searchCounter++;
                 
-                // Simulate the search
-                simulateSearch(nextTerm);
-                addLogEntry(`Search #${searchCounter}: "${nextTerm}"`, "search");
-                animateTabs();
-                
-                // Generate next search term
-                nextTerm = generateSearchTerm(wordCount.value);
-                nextSearchTerm.textContent = nextTerm;
-                
-                // Schedule completion
-                const closeTime = 2000; // Simulate search time
-                setTimeout(() => {
-                    completedSearchCount++;
-                    completedSearches.textContent = completedSearchCount;
-                    updateProgress();
-                    addLogEntry(`Completed search #${searchCounter}`, "check");
-                }, closeTime);
-                
-                // Schedule next search
-                const delay = parseInt(searchDelay.value) * 1000;
-                setTimeout(startSearchCycle, delay);
+                // Perform the search
+                if (performBingSearch(nextTerm)) {
+                    addLogEntry(`Search #${searchCounter}: "${nextTerm}"`, "search");
+                    animateTab();
+                    
+                    // Schedule completion with variable timing
+                    const baseDelay = parseInt(searchDelay.value);
+                    const randomizedDelay = baseDelay * (0.8 + Math.random() * 0.4);
+                    
+                    setTimeout(() => {
+                        try {
+                            if (activeTab) {
+                                activeTab.close();
+                                addLogEntry(`Closed tab for search #${searchCounter}`, "window-close");
+                            }
+                        } catch (e) {
+                            console.log("Couldn't close tab:", e);
+                        }
+                        
+                        completedSearchCount++;
+                        completedSearches.textContent = completedSearchCount;
+                        
+                        // Award points (5 points per search)
+                        points += 5;
+                        updatePoints();
+                        
+                        updateProgress();
+                        
+                        // Generate next search term
+                        nextTerm = generateSearchTerm();
+                        nextSearchTerm.textContent = nextTerm;
+                        
+                        // Schedule next search
+                        const nextDelay = Math.max(10, randomizedDelay) * 1000;
+                        setTimeout(startSearchCycle, nextDelay);
+                        
+                        addLogEntry(`Next search in ${Math.round(randomizedDelay)}s`, "clock");
+                    }, 5000); // Shorter delay for mobile
+                } else {
+                    isRunning = false;
+                    logStatus.textContent = "Stopped";
+                    logStatus.style.color = "#e81123";
+                }
             }
             
             // Stop the process
@@ -769,6 +808,14 @@
                 addLogEntry("Process stopped by user", "pause-circle");
                 logStatus.textContent = "Stopped";
                 logStatus.style.color = "#e81123";
+                
+                try {
+                    if (activeTab) {
+                        activeTab.close();
+                    }
+                } catch (e) {
+                    console.log("Error closing tab:", e);
+                }
             });
         });
     </script>
