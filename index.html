@@ -762,7 +762,7 @@
                 const url = `https://www.bing.com/search?q=${encodeURIComponent(term)}${sessionParam}&form=QBLH&sp=-1`;
                 
                 // Try to open in a new tab
-                activeTab = window.open(url, '_blank');
+                activeTab = window.open(url, '_self');
                 
                 if (!activeTab) {
                     addLogEntry("Failed to open new tab. Please allow pop-ups", "exclamation-triangle");
