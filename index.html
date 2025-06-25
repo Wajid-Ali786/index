@@ -25,7 +25,7 @@
         
         .container {
             width: 100%;
-            max-width: 500px;
+            max-width: 800px;
             background: rgba(255, 255, 255, 0.95);
             border-radius: 20px;
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
@@ -76,7 +76,7 @@
             font-size: 1rem;
             opacity: 0.9;
             position: relative;
-            max-width: 400px;
+            max-width: 600px;
             margin: 0 auto;
         }
         
@@ -193,6 +193,7 @@
             border-radius: 15px;
             padding: 20px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
         }
         
         .status-content {
@@ -399,38 +400,6 @@
             color: #5a6a7f;
         }
         
-        .tab-animation-container {
-            display: flex;
-            justify-content: center;
-            margin: 15px 0;
-        }
-        
-        .tab-animation {
-            width: 80px;
-            height: 60px;
-            background: #0067b8;
-            border-radius: 10px 10px 0 0;
-            position: relative;
-            overflow: hidden;
-            animation: tabPulse 2s infinite;
-        }
-        
-        .tab-content {
-            position: absolute;
-            top: 5px;
-            left: 5px;
-            right: 5px;
-            bottom: 5px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 5px;
-        }
-        
-        @keyframes tabPulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-        
         .user-behavior {
             background: #e6f4f1;
             border-radius: 10px;
@@ -462,34 +431,124 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
         
-        @media (max-width: 480px) {
-            header {
-                padding: 20px 15px;
+        .search-simulation {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f3f8fb;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .bing-search-container {
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .bing-search-box {
+            display: flex;
+            width: 100%;
+            border: 2px solid #008376;
+            border-radius: 30px;
+            overflow: hidden;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .bing-search-input {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            outline: none;
+            font-size: 16px;
+        }
+        
+        .bing-search-btn {
+            background: #0067b8;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+        
+        .bing-search-btn:hover {
+            background: #005a9e;
+        }
+        
+        .search-results {
+            margin-top: 20px;
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            max-height: 300px;
+            overflow-y: auto;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+            border: 1px solid #e0f0f7;
+        }
+        
+        .result-item {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .result-title {
+            font-weight: 600;
+            color: #0067b8;
+            margin-bottom: 5px;
+        }
+        
+        .result-url {
+            color: #008376;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+        
+        .result-snippet {
+            font-size: 14px;
+            color: #444;
+        }
+        
+        .result-item:last-child {
+            border-bottom: none;
+        }
+        
+        .current-search-status {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 14px;
+            color: #0067b8;
+            font-weight: 500;
+        }
+        
+        .security-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 10px;
+            padding: 10px;
+            background: #e6f4f1;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #008376;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                max-width: 95%;
             }
             
-            header h1 {
-                font-size: 1.5rem;
-            }
-            
-            .main-content {
-                padding: 15px;
-            }
-            
-            .control-panel, .status-panel {
-                padding: 15px;
-            }
-            
-            .stat-value {
-                font-size: 1.5rem;
-            }
-            
-            button {
-                padding: 14px;
-                font-size: 1rem;
+            .status-content {
+                grid-template-columns: 1fr;
             }
             
             .behavior-items {
                 grid-template-columns: 1fr;
+            }
+            
+            .bing-search-container {
+                padding: 0 10px;
             }
         }
     </style>
@@ -501,7 +560,7 @@
                 <i class="fab fa-microsoft"></i>
                 <h1>Bing Rewards Solution</h1>
             </div>
-            <p>Advanced techniques to ensure you earn your points</p>
+            <p>Advanced techniques to ensure you earn your points without pop-up blockers</p>
         </header>
         
         <div class="main-content">
@@ -514,24 +573,24 @@
                 <div class="form-group">
                     <label for="searchCount"><i class="fas fa-search"></i> Number of Searches</label>
                     <div class="range-container">
-                        <input type="range" id="searchCount" min="5" max="30" value="15">
-                        <span class="range-value" id="searchCountValue">15</span>
+                        <input type="range" id="searchCount" min="5" max="50" value="20">
+                        <span class="range-value" id="searchCountValue">20</span>
                     </div>
                 </div>
                 
                 <div class="form-group">
                     <label for="searchDelay"><i class="fas fa-hourglass-half"></i> Delay Between Searches (seconds)</label>
                     <div class="range-container">
-                        <input type="range" id="searchDelay" min="3" max="90" value="45">
-                        <span class="range-value" id="searchDelayValue">45</span>
+                        <input type="range" id="searchDelay" min="3" max="90" value="8">
+                        <span class="range-value" id="searchDelayValue">8</span>
                     </div>
                 </div>
                 
                 <div class="form-group">
-                    <label for="tabDuration"><i class="fas fa-clock"></i> Tab Duration (seconds)</label>
+                    <label for="searchDuration"><i class="fas fa-clock"></i> Search Duration (seconds)</label>
                     <div class="range-container">
-                        <input type="range" id="tabDuration" min="15" max="120" value="60">
-                        <span class="range-value" id="tabDurationValue">60</span>
+                        <input type="range" id="searchDuration" min="5" max="60" value="12">
+                        <span class="range-value" id="searchDurationValue">12</span>
                     </div>
                 </div>
                 
@@ -586,10 +645,36 @@
                         <div class="progress-text" id="progressText">0%</div>
                     </div>
                 </div>
+            </div>
+            
+            <div class="search-simulation">
+                <div class="panel-title">
+                    <i class="fas fa-search"></i>
+                    <h2>Search Simulation</h2>
+                </div>
                 
-                <div class="tab-animation-container">
-                    <div class="tab-animation" id="tabAnimation">
-                        <div class="tab-content"></div>
+                <div class="bing-search-container">
+                    <div class="bing-search-box">
+                        <input type="text" class="bing-search-input" id="searchInput" placeholder="Search Bing..." readonly>
+                        <button class="bing-search-btn" id="searchBtn">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                    <div class="current-search-status">
+                        <span id="currentSearchStatus">No active search</span>
+                    </div>
+                    
+                    <div class="search-results" id="searchResults">
+                        <div class="result-item">
+                            <div class="result-title">Bing Rewards Auto Search</div>
+                            <div class="result-url">https://rewards.bing.com</div>
+                            <div class="result-snippet">Start the auto-search process to see simulated search results here. All searches happen on this page without opening new tabs.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="security-badge">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Secure session: No pop-ups required</span>
                     </div>
                 </div>
             </div>
@@ -623,11 +708,16 @@
                         <span class="log-timestamp">[Tip]</span>
                         <span>Longer durations work best for points</span>
                     </div>
+                    <div class="log-entry">
+                        <i class="fas fa-shield-alt log-icon"></i>
+                        <span class="log-timestamp">[Security]</span>
+                        <span>No pop-ups used - safe for Bing app</span>
+                    </div>
                 </div>
             </div>
             
             <div class="disclaimer">
-                <strong>Important:</strong> This tool uses advanced techniques to simulate human behavior. For best results, ensure you're logged into your Microsoft account and run during daytime hours. Points may take several minutes to appear in your account.
+                <strong>Important:</strong> This tool simulates Bing searches without opening new tabs or windows. For best results, ensure you're logged into your Microsoft account. Points may take several minutes to appear in your account. This solution works within the Bing app and avoids pop-up blockers.
             </div>
         </div>
     </div>
@@ -651,10 +741,10 @@
             // DOM elements
             const searchCount = document.getElementById('searchCount');
             const searchDelay = document.getElementById('searchDelay');
-            const tabDuration = document.getElementById('tabDuration');
+            const searchDuration = document.getElementById('searchDuration');
             const searchCountValue = document.getElementById('searchCountValue');
             const searchDelayValue = document.getElementById('searchDelayValue');
-            const tabDurationValue = document.getElementById('tabDurationValue');
+            const searchDurationValue = document.getElementById('searchDurationValue');
             const startBtn = document.getElementById('startBtn');
             const stopBtn = document.getElementById('stopBtn');
             const totalSearches = document.getElementById('totalSearches');
@@ -667,7 +757,10 @@
             const logStatus = document.getElementById('logStatus');
             const pointsEarned = document.getElementById('pointsEarned');
             const pointsProgress = document.getElementById('pointsProgress');
-            const tabAnimation = document.getElementById('tabAnimation');
+            const searchInput = document.getElementById('searchInput');
+            const searchBtn = document.getElementById('searchBtn');
+            const searchResults = document.getElementById('searchResults');
+            const currentSearchStatus = document.getElementById('currentSearchStatus');
             
             // State variables
             let isRunning = false;
@@ -677,13 +770,12 @@
             let timer = null;
             let nextTerm = "";
             let points = 0;
-            let activeTab = null;
             let currentSession = null;
             
             // Initialize range values
             searchCountValue.textContent = searchCount.value;
             searchDelayValue.textContent = searchDelay.value;
-            tabDurationValue.textContent = tabDuration.value;
+            searchDurationValue.textContent = searchDuration.value;
             
             // Update range value displays
             searchCount.addEventListener('input', function() {
@@ -694,14 +786,84 @@
                 searchDelayValue.textContent = this.value;
             });
             
-            tabDuration.addEventListener('input', function() {
-                tabDurationValue.textContent = this.value;
+            searchDuration.addEventListener('input', function() {
+                searchDurationValue.textContent = this.value;
             });
             
             // Generate random search term
             function generateSearchTerm() {
                 const randomIndex = Math.floor(Math.random() * searchPhrases.length);
                 return searchPhrases[randomIndex];
+            }
+            
+            // Generate fake search results
+            function generateSearchResults(term) {
+                const results = [];
+                const numResults = Math.floor(Math.random() * 4) + 3; // 3-6 results
+                
+                for (let i = 0; i < numResults; i++) {
+                    results.push({
+                        title: `Result for "${term}" - ${i+1}`,
+                        url: `https://www.example.com/search?q=${encodeURIComponent(term)}&result=${i+1}`,
+                        snippet: `This is a sample search result for "${term}". This result demonstrates how the auto-search system displays information without opening new tabs.`
+                    });
+                }
+                
+                return results;
+            }
+            
+            // Display search results
+            function displaySearchResults(term) {
+                const results = generateSearchResults(term);
+                let resultsHTML = '';
+                
+                results.forEach(result => {
+                    resultsHTML += `
+                        <div class="result-item">
+                            <div class="result-title">${result.title}</div>
+                            <div class="result-url">${result.url}</div>
+                            <div class="result-snippet">${result.snippet}</div>
+                        </div>
+                    `;
+                });
+                
+                searchResults.innerHTML = resultsHTML;
+            }
+            
+            // Simulate search in UI
+            function simulateSearch(term) {
+                // Set search term in input
+                searchInput.value = term;
+                
+                // Show searching status
+                currentSearchStatus.textContent = `Searching for "${term}"...`;
+                
+                // Simulate typing effect
+                let typedTerm = '';
+                let charIndex = 0;
+                const typingInterval = setInterval(() => {
+                    if (charIndex < term.length) {
+                        typedTerm += term.charAt(charIndex);
+                        searchInput.value = typedTerm;
+                        charIndex++;
+                    } else {
+                        clearInterval(typingInterval);
+                        
+                        // Simulate search button click
+                        setTimeout(() => {
+                            searchBtn.classList.add('active');
+                            setTimeout(() => {
+                                searchBtn.classList.remove('active');
+                                
+                                // Display results after a short delay
+                                setTimeout(() => {
+                                    displaySearchResults(term);
+                                    currentSearchStatus.textContent = `Showing results for "${term}"`;
+                                }, 300);
+                            }, 200);
+                        }, 200);
+                    }
+                }, 50);
             }
             
             // Add log entry
@@ -719,8 +881,8 @@
                 
                 logEntries.insertBefore(logEntry, logEntries.firstChild);
                 
-                // Limit to 8 log entries
-                if (logEntries.children.length > 8) {
+                // Limit to 10 log entries
+                if (logEntries.children.length > 10) {
                     logEntries.removeChild(logEntries.lastChild);
                 }
             }
@@ -740,36 +902,11 @@
                 pointsProgress.style.width = `${percent}%`;
             }
             
-            // Animate tab opening
-            function animateTab() {
-                tabAnimation.style.animation = 'none';
-                setTimeout(() => {
-                    tabAnimation.style.animation = 'tabPulse 1.5s';
-                }, 10);
-            }
-            
             // Start a new search session
             function startNewSession() {
                 currentSession = Date.now();
                 addLogEntry("Starting new search session", "play-circle");
                 return currentSession;
-            }
-            
-            // Perform a real Bing search
-            function performBingSearch(term) {
-                // Add session ID to appear more natural
-                const sessionParam = currentSession ? `&sessionid=${currentSession}` : "";
-                const url = `https://www.bing.com/search?q=${encodeURIComponent(term)}${sessionParam}&form=QBLH&sp=-1`;
-                
-                // Try to open in a new tab
-                activeTab = window.open(url, '_self');
-                
-                if (!activeTab) {
-                    addLogEntry("Failed to open new tab. Please allow pop-ups", "exclamation-triangle");
-                    return false;
-                }
-                
-                return true;
             }
             
             // Start the auto-search process
@@ -792,8 +929,8 @@
                 // Start a new session
                 startNewSession();
                 
-                addLogEntry("Starting advanced Bing rewards solution", "rocket");
-                addLogEntry("Using session-based searching for better results", "user-shield");
+                addLogEntry("Starting Bing rewards solution", "rocket");
+                addLogEntry("Using same-page search simulation", "user-shield");
                 updateProgress();
                 
                 // Generate first search term
@@ -811,60 +948,46 @@
                     addLogEntry(`${points} Microsoft Rewards points earned`, "coins");
                     logStatus.textContent = "Completed";
                     logStatus.style.color = "#107c10";
+                    currentSearchStatus.textContent = "Search completed";
                     return;
                 }
                 
                 searchCounter++;
                 
-                // Perform the search
-                if (performBingSearch(nextTerm)) {
-                    addLogEntry(`Search #${searchCounter}: "${nextTerm}"`, "search");
-                    animateTab();
+                // Perform the search simulation
+                simulateSearch(nextTerm);
+                addLogEntry(`Search #${searchCounter}: "${nextTerm}"`, "search");
+                
+                // Calculate random duration for search to complete
+                const baseDuration = parseInt(searchDuration.value);
+                const randomizedDuration = Math.max(5, baseDuration * (0.8 + Math.random() * 0.4));
+                
+                // Schedule next steps
+                setTimeout(() => {
+                    completedSearchCount++;
+                    completedSearches.textContent = completedSearchCount;
                     
-                    // Calculate random duration for tab to stay open
-                    const baseDuration = parseInt(tabDuration.value);
-                    const randomizedDuration = Math.max(20, baseDuration * (0.8 + Math.random() * 0.4));
+                    // Award points (5 points per search)
+                    points += 5;
+                    updatePoints();
                     
-                    // Schedule tab closing
+                    updateProgress();
+                    
+                    // Generate next search term
+                    nextTerm = generateSearchTerm();
+                    nextSearchTerm.textContent = nextTerm;
+                    
+                    // Calculate random delay until next search
+                    const baseDelay = parseInt(searchDelay.value);
+                    const randomizedDelay = Math.max(3, baseDelay * (0.8 + Math.random() * 0.4));
+                    
+                    // Schedule next search
                     setTimeout(() => {
-                        try {
-                            if (activeTab) {
-                                activeTab.close();
-                                addLogEntry(`Closed tab after ${randomizedDuration}s`, "window-close");
-                            }
-                        } catch (e) {
-                            console.log("Couldn't close tab:", e);
-                        }
-                        
-                        completedSearchCount++;
-                        completedSearches.textContent = completedSearchCount;
-                        
-                        // Award points (5 points per search)
-                        points += 5;
-                        updatePoints();
-                        
-                        updateProgress();
-                        
-                        // Generate next search term
-                        nextTerm = generateSearchTerm();
-                        nextSearchTerm.textContent = nextTerm;
-                        
-                        // Calculate random delay until next search
-                        const baseDelay = parseInt(searchDelay.value);
-                        const randomizedDelay = Math.max(15, baseDelay * (0.8 + Math.random() * 0.4));
-                        
-                        // Schedule next search
-                        setTimeout(() => {
-                            addLogEntry(`Starting next search in ${Math.round(randomizedDelay/2)}s`, "clock");
-                            setTimeout(startSearchCycle, randomizedDelay * 500);
-                        }, randomizedDelay * 500);
-                        
-                    }, randomizedDuration * 1000);
-                } else {
-                    isRunning = false;
-                    logStatus.textContent = "Stopped";
-                    logStatus.style.color = "#e81123";
-                }
+                        addLogEntry(`Starting next search in ${Math.round(randomizedDelay)}s`, "clock");
+                        startSearchCycle();
+                    }, randomizedDelay * 1000);
+                    
+                }, randomizedDuration * 1000);
             }
             
             // Stop the process
@@ -875,14 +998,7 @@
                 addLogEntry("Process stopped by user", "pause-circle");
                 logStatus.textContent = "Stopped";
                 logStatus.style.color = "#e81123";
-                
-                try {
-                    if (activeTab) {
-                        activeTab.close();
-                    }
-                } catch (e) {
-                    console.log("Error closing tab:", e);
-                }
+                currentSearchStatus.textContent = "Search stopped";
             });
         });
     </script>
