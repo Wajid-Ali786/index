@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bing Rewards Mobile Auto-Search</title>
+    <title>Bing Rewards Solution</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -399,26 +399,6 @@
             color: #5a6a7f;
         }
         
-        .mobile-tabs {
-            display: flex;
-            justify-content: center;
-            gap: 5px;
-            margin: 15px 0;
-        }
-        
-        .mobile-tab {
-            width: 35px;
-            height: 5px;
-            background: #008376;
-            border-radius: 3px;
-            opacity: 0.3;
-        }
-        
-        .mobile-tab.active {
-            opacity: 1;
-            background: #0067b8;
-        }
-        
         .tab-animation-container {
             display: flex;
             justify-content: center;
@@ -432,6 +412,7 @@
             border-radius: 10px 10px 0 0;
             position: relative;
             overflow: hidden;
+            animation: tabPulse 2s infinite;
         }
         
         .tab-content {
@@ -442,6 +423,43 @@
             bottom: 5px;
             background: rgba(255, 255, 255, 0.2);
             border-radius: 5px;
+        }
+        
+        @keyframes tabPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .user-behavior {
+            background: #e6f4f1;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+        
+        .behavior-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            color: #0067b8;
+            font-weight: 600;
+        }
+        
+        .behavior-items {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+        
+        .behavior-item {
+            background: white;
+            border-radius: 8px;
+            padding: 10px;
+            text-align: center;
+            font-size: 0.9rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
         
         @media (max-width: 480px) {
@@ -469,6 +487,10 @@
                 padding: 14px;
                 font-size: 1rem;
             }
+            
+            .behavior-items {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -477,9 +499,9 @@
         <header>
             <div class="logo">
                 <i class="fab fa-microsoft"></i>
-                <h1>Bing Rewards Mobile</h1>
+                <h1>Bing Rewards Solution</h1>
             </div>
-            <p>Earn Microsoft Rewards points with optimized searches</p>
+            <p>Advanced techniques to ensure you earn your points</p>
         </header>
         
         <div class="main-content">
@@ -498,10 +520,18 @@
                 </div>
                 
                 <div class="form-group">
-                    <label for="searchDelay"><i class="fas fa-hourglass-half"></i> Delay (seconds)</label>
+                    <label for="searchDelay"><i class="fas fa-hourglass-half"></i> Delay Between Searches (seconds)</label>
                     <div class="range-container">
-                        <input type="range" id="searchDelay" min="10" max="60" value="25">
-                        <span class="range-value" id="searchDelayValue">25</span>
+                        <input type="range" id="searchDelay" min="15" max="90" value="45">
+                        <span class="range-value" id="searchDelayValue">45</span>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="tabDuration"><i class="fas fa-clock"></i> Tab Duration (seconds)</label>
+                    <div class="range-container">
+                        <input type="range" id="tabDuration" min="20" max="120" value="60">
+                        <span class="range-value" id="tabDurationValue">60</span>
                     </div>
                 </div>
                 
@@ -564,6 +594,19 @@
                 </div>
             </div>
             
+            <div class="user-behavior">
+                <div class="behavior-title">
+                    <i class="fas fa-user-check"></i>
+                    <h3>Human Behavior Simulation</h3>
+                </div>
+                <div class="behavior-items">
+                    <div class="behavior-item">Variable timing between actions</div>
+                    <div class="behavior-item">Natural search patterns</div>
+                    <div class="behavior-item">Real browser interactions</div>
+                    <div class="behavior-item">Session-like behavior</div>
+                </div>
+            </div>
+            
             <div class="log-container">
                 <div class="log-header">
                     <h3><i class="fas fa-list"></i> Activity Log</h3>
@@ -573,18 +616,18 @@
                     <div class="log-entry">
                         <i class="fas fa-info-circle log-icon"></i>
                         <span class="log-timestamp">[System]</span>
-                        <span>Bing Rewards tool initialized</span>
+                        <span>Rewards solution initialized</span>
                     </div>
                     <div class="log-entry">
                         <i class="fas fa-lightbulb log-icon"></i>
                         <span class="log-timestamp">[Tip]</span>
-                        <span>Set higher delays for better results</span>
+                        <span>Longer durations work best for points</span>
                     </div>
                 </div>
             </div>
             
             <div class="disclaimer">
-                <strong>Note:</strong> This tool performs real Bing searches to earn Microsoft Rewards points. For best results, stay logged into your Microsoft account and avoid running 24/7. Microsoft may detect and block automated searches.
+                <strong>Important:</strong> This tool uses advanced techniques to simulate human behavior. For best results, ensure you're logged into your Microsoft account and run during daytime hours. Points may take several minutes to appear in your account.
             </div>
         </div>
     </div>
@@ -593,23 +636,25 @@
         document.addEventListener('DOMContentLoaded', function() {
             // Enhanced database of natural search phrases
             const searchPhrases = [
-                "latest tech news", "weather forecast this week", "healthy recipes for dinner",
-                "best travel destinations", "how to improve productivity", "learn programming online",
-                "home workout routines", "stock market updates", "new movie releases",
-                "sustainable living tips", "digital photography tips", "mental health resources",
-                "online courses for beginners", "budget travel ideas", "beginner gardening guide",
-                "career development strategies", "cooking tutorials", "local events near me",
-                "science discoveries 2023", "environmental conservation", "fitness trackers comparison",
-                "book recommendations", "AI applications", "mobile app trends", 
-                "renewable energy news", "work from home tips", "language learning apps",
-                "personal finance management", "VR technology updates", "stress relief techniques"
+                "latest technology news", "weather forecast next week", "healthy dinner recipes for family",
+                "best travel destinations this year", "how to improve work productivity", "learn programming online free",
+                "home workout routines without equipment", "stock market trends today", "new movie releases streaming",
+                "sustainable living tips for beginners", "digital photography techniques", "mental health resources near me",
+                "online courses for career development", "budget travel ideas for couples", "beginner gardening tips",
+                "career development strategies 2023", "easy cooking tutorials", "local events this weekend",
+                "science discoveries this month", "environmental conservation efforts", "fitness trackers comparison reviews",
+                "book recommendations for professionals", "AI applications in healthcare", "mobile app development trends", 
+                "renewable energy innovations", "work from home productivity tips", "language learning apps comparison",
+                "personal finance management strategies", "VR technology updates", "stress relief techniques for busy people"
             ];
             
             // DOM elements
             const searchCount = document.getElementById('searchCount');
             const searchDelay = document.getElementById('searchDelay');
+            const tabDuration = document.getElementById('tabDuration');
             const searchCountValue = document.getElementById('searchCountValue');
             const searchDelayValue = document.getElementById('searchDelayValue');
+            const tabDurationValue = document.getElementById('tabDurationValue');
             const startBtn = document.getElementById('startBtn');
             const stopBtn = document.getElementById('stopBtn');
             const totalSearches = document.getElementById('totalSearches');
@@ -633,10 +678,12 @@
             let nextTerm = "";
             let points = 0;
             let activeTab = null;
+            let currentSession = null;
             
             // Initialize range values
             searchCountValue.textContent = searchCount.value;
             searchDelayValue.textContent = searchDelay.value;
+            tabDurationValue.textContent = tabDuration.value;
             
             // Update range value displays
             searchCount.addEventListener('input', function() {
@@ -645,6 +692,10 @@
             
             searchDelay.addEventListener('input', function() {
                 searchDelayValue.textContent = this.value;
+            });
+            
+            tabDuration.addEventListener('input', function() {
+                tabDurationValue.textContent = this.value;
             });
             
             // Generate random search term
@@ -691,17 +742,24 @@
             
             // Animate tab opening
             function animateTab() {
-                tabAnimation.style.transform = 'scale(1.1)';
-                tabAnimation.style.opacity = '0.8';
+                tabAnimation.style.animation = 'none';
                 setTimeout(() => {
-                    tabAnimation.style.transform = 'scale(1)';
-                    tabAnimation.style.opacity = '1';
-                }, 300);
+                    tabAnimation.style.animation = 'tabPulse 1.5s';
+                }, 10);
+            }
+            
+            // Start a new search session
+            function startNewSession() {
+                currentSession = Date.now();
+                addLogEntry("Starting new search session", "play-circle");
+                return currentSession;
             }
             
             // Perform a real Bing search
             function performBingSearch(term) {
-                const url = `https://www.bing.com/search?q=${encodeURIComponent(term)}`;
+                // Add session ID to appear more natural
+                const sessionParam = currentSession ? `&sessionid=${currentSession}` : "";
+                const url = `https://www.bing.com/search?q=${encodeURIComponent(term)}${sessionParam}&form=QBLH&sp=-1`;
                 
                 // Try to open in a new tab
                 activeTab = window.open(url, '_blank');
@@ -731,8 +789,11 @@
                 pointsEarned.textContent = "0";
                 pointsProgress.style.width = "0%";
                 
-                addLogEntry("Starting Bing auto-search with optimized settings", "play-circle");
-                addLogEntry("Using natural search phrases to avoid detection", "lightbulb");
+                // Start a new session
+                startNewSession();
+                
+                addLogEntry("Starting advanced Bing rewards solution", "rocket");
+                addLogEntry("Using session-based searching for better results", "user-shield");
                 updateProgress();
                 
                 // Generate first search term
@@ -760,15 +821,16 @@
                     addLogEntry(`Search #${searchCounter}: "${nextTerm}"`, "search");
                     animateTab();
                     
-                    // Schedule completion with variable timing
-                    const baseDelay = parseInt(searchDelay.value);
-                    const randomizedDelay = baseDelay * (0.8 + Math.random() * 0.4);
+                    // Calculate random duration for tab to stay open
+                    const baseDuration = parseInt(tabDuration.value);
+                    const randomizedDuration = Math.max(20, baseDuration * (0.8 + Math.random() * 0.4));
                     
+                    // Schedule tab closing
                     setTimeout(() => {
                         try {
                             if (activeTab) {
                                 activeTab.close();
-                                addLogEntry(`Closed tab for search #${searchCounter}`, "window-close");
+                                addLogEntry(`Closed tab after ${randomizedDuration}s`, "window-close");
                             }
                         } catch (e) {
                             console.log("Couldn't close tab:", e);
@@ -787,12 +849,17 @@
                         nextTerm = generateSearchTerm();
                         nextSearchTerm.textContent = nextTerm;
                         
-                        // Schedule next search
-                        const nextDelay = Math.max(10, randomizedDelay) * 1000;
-                        setTimeout(startSearchCycle, nextDelay);
+                        // Calculate random delay until next search
+                        const baseDelay = parseInt(searchDelay.value);
+                        const randomizedDelay = Math.max(15, baseDelay * (0.8 + Math.random() * 0.4));
                         
-                        addLogEntry(`Next search in ${Math.round(randomizedDelay)}s`, "clock");
-                    }, 5000); // Shorter delay for mobile
+                        // Schedule next search
+                        setTimeout(() => {
+                            addLogEntry(`Starting next search in ${Math.round(randomizedDelay/2)}s`, "clock");
+                            setTimeout(startSearchCycle, randomizedDelay * 500);
+                        }, randomizedDelay * 500);
+                        
+                    }, randomizedDuration * 1000);
                 } else {
                     isRunning = false;
                     logStatus.textContent = "Stopped";
