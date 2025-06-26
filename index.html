@@ -26,7 +26,7 @@
         .container {
             width: 100%;
             max-width: 800px;
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.97);
             border-radius: 20px;
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
             overflow: hidden;
@@ -81,14 +81,14 @@
         }
         
         .main-content {
-            padding: 20px;
+            padding: 25px;
         }
         
         .control-panel {
             background: #f3f8fb;
             border-radius: 15px;
-            padding: 20px;
-            margin-bottom: 20px;
+            padding: 25px;
+            margin-bottom: 25px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         }
         
@@ -96,9 +96,9 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             color: #0067b8;
-            padding-bottom: 12px;
+            padding-bottom: 15px;
             border-bottom: 2px solid #e0f0f7;
         }
         
@@ -107,8 +107,15 @@
             color: #008376;
         }
         
+        .settings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+        
         .form-group {
-            margin-bottom: 18px;
+            margin-bottom: 0;
         }
         
         .form-group label {
@@ -124,6 +131,10 @@
         
         input[type="range"] {
             width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            background: #e0f0f7;
+            outline: none;
         }
         
         .range-container {
@@ -146,13 +157,12 @@
         
         .button-group {
             display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-top: 20px;
+            gap: 15px;
+            margin-top: 15px;
         }
         
         button {
-            padding: 16px;
+            padding: 16px 24px;
             border: none;
             border-radius: 12px;
             font-size: 1.1rem;
@@ -164,6 +174,7 @@
             justify-content: center;
             gap: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            flex: 1;
         }
         
         #startBtn {
@@ -188,65 +199,11 @@
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
         }
         
-        .status-panel {
-            background: #f3f8fb;
-            border-radius: 15px;
-            padding: 20px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            margin-bottom: 20px;
-        }
-        
-        .status-content {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            margin-bottom: 15px;
-        }
-        
-        .stat-box {
-            background: white;
-            border-radius: 12px;
-            padding: 15px;
-            text-align: center;
-            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
-            border: 1px solid #e0f0f7;
-        }
-        
-        .stat-value {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #0067b8;
-            margin: 5px 0;
-        }
-        
-        .stat-label {
-            font-size: 0.9rem;
-            color: #008376;
-            font-weight: 500;
-        }
-        
-        .next-search {
-            background: #e6f4f1;
-            border-radius: 10px;
-            padding: 12px 15px;
-            margin: 15px 0;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: 500;
-            border-left: 4px solid #008376;
-        }
-        
-        .next-search i {
-            color: #008376;
-            font-size: 1.2rem;
-        }
-        
         .progress-container {
             background: white;
             border-radius: 12px;
             padding: 15px;
-            margin: 15px 0;
+            margin: 20px 0;
             box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
             border: 1px solid #e0f0f7;
         }
@@ -286,154 +243,9 @@
             font-size: 0.8rem;
         }
         
-        .log-container {
-            background: white;
-            border-radius: 12px;
-            padding: 15px;
-            height: 200px;
-            overflow-y: auto;
-            box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.05);
-            border: 1px solid #e0f0f7;
-        }
-        
-        .log-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-            font-size: 0.95rem;
-            color: #005a9e;
-            font-weight: 600;
-        }
-        
-        .log-entry {
-            padding: 10px 0;
-            border-bottom: 1px solid #f0f7fa;
-            font-size: 0.9rem;
-            color: #444;
-            display: flex;
-            align-items: flex-start;
-            gap: 8px;
-        }
-        
-        .log-entry:last-child {
-            border-bottom: none;
-        }
-        
-        .log-icon {
-            color: #008376;
-            font-size: 0.9rem;
-            margin-top: 3px;
-            min-width: 20px;
-        }
-        
-        .log-timestamp {
-            color: #008376;
-            font-size: 0.8rem;
-            min-width: 60px;
-            font-weight: 500;
-        }
-        
-        .disclaimer {
-            margin-top: 20px;
-            padding: 15px;
-            background: #fff8e1;
-            border-radius: 12px;
-            border-left: 4px solid #ffb900;
-            font-size: 0.85rem;
-            color: #7d6608;
-        }
-        
-        .disclaimer strong {
-            color: #d35400;
-        }
-        
-        .points-tracker {
-            background: white;
-            border-radius: 15px;
-            padding: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            border: 1px solid #e0f0f7;
-            text-align: center;
-            margin: 20px 0;
-        }
-        
-        .points-display {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-            margin: 10px 0;
-        }
-        
-        .points-value {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: #107c10;
-            min-width: 80px;
-            text-align: center;
-        }
-        
-        .points-label {
-            font-size: 1rem;
-            color: #5a6a7f;
-        }
-        
-        .points-progress {
-            height: 10px;
-            background: #e0e6ed;
-            border-radius: 5px;
-            overflow: hidden;
-            margin: 10px 0;
-        }
-        
-        .points-progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #107c10, #96c93d);
-            width: 0%;
-            border-radius: 5px;
-            transition: width 0.5s ease;
-        }
-        
-        .points-goal {
-            text-align: center;
-            font-size: 0.9rem;
-            color: #5a6a7f;
-        }
-        
-        .user-behavior {
-            background: #e6f4f1;
-            border-radius: 10px;
-            padding: 15px;
-            margin-top: 15px;
-        }
-        
-        .behavior-title {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 10px;
-            color: #0067b8;
-            font-weight: 600;
-        }
-        
-        .behavior-items {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-        }
-        
-        .behavior-item {
-            background: white;
-            border-radius: 8px;
-            padding: 10px;
-            text-align: center;
-            font-size: 0.9rem;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-        }
-        
         .search-simulation {
-            margin-top: 20px;
-            padding: 15px;
+            margin-top: 25px;
+            padding: 20px;
             background: #f3f8fb;
             border-radius: 15px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
@@ -461,6 +273,7 @@
             border: none;
             outline: none;
             font-size: 16px;
+            background: #f8f9fa;
         }
         
         .bing-search-btn {
@@ -520,18 +333,94 @@
             font-size: 14px;
             color: #0067b8;
             font-weight: 500;
+            min-height: 22px;
         }
         
-        .security-badge {
+        .points-display {
             display: flex;
+            justify-content: center;
             align-items: center;
-            gap: 8px;
-            margin-top: 10px;
-            padding: 10px;
+            gap: 15px;
+            margin: 15px 0;
             background: #e6f4f1;
-            border-radius: 8px;
-            font-size: 14px;
+            border-radius: 12px;
+            padding: 15px;
+        }
+        
+        .points-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #107c10;
+            min-width: 80px;
+            text-align: center;
+        }
+        
+        .points-label {
+            font-size: 1.1rem;
+            color: #5a6a7f;
+        }
+        
+        .log-container {
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            height: 180px;
+            overflow-y: auto;
+            box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e0f0f7;
+            margin-top: 25px;
+        }
+        
+        .log-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+            color: #005a9e;
+            font-weight: 600;
+        }
+        
+        .log-entry {
+            padding: 10px 0;
+            border-bottom: 1px solid #f0f7fa;
+            font-size: 0.9rem;
+            color: #444;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+        
+        .log-entry:last-child {
+            border-bottom: none;
+        }
+        
+        .log-icon {
             color: #008376;
+            font-size: 0.9rem;
+            margin-top: 3px;
+            min-width: 20px;
+        }
+        
+        .log-timestamp {
+            color: #008376;
+            font-size: 0.8rem;
+            min-width: 60px;
+            font-weight: 500;
+        }
+        
+        .disclaimer {
+            margin-top: 20px;
+            padding: 15px;
+            background: #fff8e1;
+            border-radius: 12px;
+            border-left: 4px solid #ffb900;
+            font-size: 0.85rem;
+            color: #7d6608;
+            text-align: center;
+        }
+        
+        .disclaimer strong {
+            color: #d35400;
         }
         
         @media (max-width: 768px) {
@@ -539,12 +428,12 @@
                 max-width: 95%;
             }
             
-            .status-content {
+            .settings-grid {
                 grid-template-columns: 1fr;
             }
             
-            .behavior-items {
-                grid-template-columns: 1fr;
+            .button-group {
+                flex-direction: column;
             }
             
             .bing-search-container {
@@ -558,39 +447,41 @@
         <header>
             <div class="logo">
                 <i class="fab fa-microsoft"></i>
-                <h1>Bing Rewards Solution</h1>
+                <h1>Bing Reward Solution</h1>
             </div>
-            <p>Advanced techniques to ensure you earn your points without pop-up blockers</p>
+            <p>Earn points without pop-ups or multiple tabs</p>
         </header>
         
         <div class="main-content">
             <div class="control-panel">
                 <div class="panel-title">
-                    <i class="fas fa-sliders-h"></i>
+                    <i class="fas fa-cog"></i>
                     <h2>Search Configuration</h2>
                 </div>
                 
-                <div class="form-group">
-                    <label for="searchCount"><i class="fas fa-search"></i> Number of Searches</label>
-                    <div class="range-container">
-                        <input type="range" id="searchCount" min="5" max="50" value="20">
-                        <span class="range-value" id="searchCountValue">20</span>
+                <div class="settings-grid">
+                    <div class="form-group">
+                        <label for="searchCount"><i class="fas fa-search"></i> Number of Searches</label>
+                        <div class="range-container">
+                            <input type="range" id="searchCount" min="5" max="50" value="20">
+                            <span class="range-value" id="searchCountValue">20</span>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="searchDelay"><i class="fas fa-hourglass-half"></i> Delay Between Searches (seconds)</label>
-                    <div class="range-container">
-                        <input type="range" id="searchDelay" min="3" max="90" value="8">
-                        <span class="range-value" id="searchDelayValue">8</span>
+                    
+                    <div class="form-group">
+                        <label for="searchDelay"><i class="fas fa-hourglass-half"></i> Delay Between Searches (seconds)</label>
+                        <div class="range-container">
+                            <input type="range" id="searchDelay" min="3" max="90" value="8">
+                            <span class="range-value" id="searchDelayValue">8</span>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="searchDuration"><i class="fas fa-clock"></i> Search Duration (seconds)</label>
-                    <div class="range-container">
-                        <input type="range" id="searchDuration" min="5" max="60" value="12">
-                        <span class="range-value" id="searchDurationValue">12</span>
+                    
+                    <div class="form-group">
+                        <label for="searchDuration"><i class="fas fa-clock"></i> Search Duration (seconds)</label>
+                        <div class="range-container">
+                            <input type="range" id="searchDuration" min="5" max="60" value="12">
+                            <span class="range-value" id="searchDurationValue">12</span>
+                        </div>
                     </div>
                 </div>
                 
@@ -598,52 +489,21 @@
                     <button id="startBtn"><i class="fas fa-play"></i> Start Auto-Search</button>
                     <button id="stopBtn"><i class="fas fa-stop"></i> Stop Process</button>
                 </div>
-            </div>
-            
-            <div class="points-tracker">
-                <h3><i class="fas fa-trophy"></i> Points Tracker</h3>
-                <div class="points-display">
-                    <div class="points-value" id="pointsEarned">0</div>
-                    <div class="points-label">Points Earned</div>
-                </div>
-                <div class="points-progress">
-                    <div class="points-progress-fill" id="pointsProgress"></div>
-                </div>
-                <div class="points-goal">Daily Goal: 150 points</div>
-            </div>
-            
-            <div class="status-panel">
-                <div class="panel-title">
-                    <i class="fas fa-chart-bar"></i>
-                    <h2>Search Status</h2>
-                </div>
-                
-                <div class="status-content">
-                    <div class="stat-box">
-                        <div class="stat-label">Total Searches</div>
-                        <div class="stat-value" id="totalSearches">0</div>
-                    </div>
-                    
-                    <div class="stat-box">
-                        <div class="stat-label">Completed</div>
-                        <div class="stat-value" id="completedSearches">0</div>
-                    </div>
-                </div>
-                
-                <div class="next-search">
-                    <i class="fas fa-arrow-right"></i>
-                    <span>Next: <span id="nextSearchTerm">Ready to start</span></span>
-                </div>
                 
                 <div class="progress-container">
                     <div class="progress-header">
-                        <span>Progress</span>
+                        <span>Search Progress</span>
                         <span id="progressPercent">0%</span>
                     </div>
                     <div class="progress-bar">
                         <div class="progress-fill" id="progressFill"></div>
                         <div class="progress-text" id="progressText">0%</div>
                     </div>
+                </div>
+                
+                <div class="points-display">
+                    <div class="points-value" id="pointsEarned">0</div>
+                    <div class="points-label">Points Earned</div>
                 </div>
             </div>
             
@@ -661,7 +521,7 @@
                         </button>
                     </div>
                     <div class="current-search-status">
-                        <span id="currentSearchStatus">No active search</span>
+                        <span id="currentSearchStatus">Ready to start</span>
                     </div>
                     
                     <div class="search-results" id="searchResults">
@@ -671,24 +531,6 @@
                             <div class="result-snippet">Start the auto-search process to see simulated search results here. All searches happen on this page without opening new tabs.</div>
                         </div>
                     </div>
-                    
-                    <div class="security-badge">
-                        <i class="fas fa-shield-alt"></i>
-                        <span>Secure session: No pop-ups required</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="user-behavior">
-                <div class="behavior-title">
-                    <i class="fas fa-user-check"></i>
-                    <h3>Human Behavior Simulation</h3>
-                </div>
-                <div class="behavior-items">
-                    <div class="behavior-item">Variable timing between actions</div>
-                    <div class="behavior-item">Natural search patterns</div>
-                    <div class="behavior-item">Real browser interactions</div>
-                    <div class="behavior-item">Session-like behavior</div>
                 </div>
             </div>
             
@@ -706,18 +548,13 @@
                     <div class="log-entry">
                         <i class="fas fa-lightbulb log-icon"></i>
                         <span class="log-timestamp">[Tip]</span>
-                        <span>Longer durations work best for points</span>
-                    </div>
-                    <div class="log-entry">
-                        <i class="fas fa-shield-alt log-icon"></i>
-                        <span class="log-timestamp">[Security]</span>
-                        <span>No pop-ups used - safe for Bing app</span>
+                        <span>For best results, run during daytime hours</span>
                     </div>
                 </div>
             </div>
             
             <div class="disclaimer">
-                <strong>Important:</strong> This tool simulates Bing searches without opening new tabs or windows. For best results, ensure you're logged into your Microsoft account. Points may take several minutes to appear in your account. This solution works within the Bing app and avoids pop-up blockers.
+                <strong>Note:</strong> This tool simulates Bing searches without opening new tabs. Ensure you're logged into your Microsoft account. Points may take several minutes to appear in your account.
             </div>
         </div>
     </div>
@@ -726,16 +563,16 @@
         document.addEventListener('DOMContentLoaded', function() {
             // Enhanced database of natural search phrases
             const searchPhrases = [
-                "latest technology news", "weather forecast next week", "healthy dinner recipes for family",
-                "best travel destinations this year", "how to improve work productivity", "learn programming online free",
-                "home workout routines without equipment", "stock market trends today", "new movie releases streaming",
-                "sustainable living tips for beginners", "digital photography techniques", "mental health resources near me",
-                "online courses for career development", "budget travel ideas for couples", "beginner gardening tips",
-                "career development strategies 2023", "easy cooking tutorials", "local events this weekend",
-                "science discoveries this month", "environmental conservation efforts", "fitness trackers comparison reviews",
-                "book recommendations for professionals", "AI applications in healthcare", "mobile app development trends", 
-                "renewable energy innovations", "work from home productivity tips", "language learning apps comparison",
-                "personal finance management strategies", "VR technology updates", "stress relief techniques for busy people"
+                "latest technology news", "weather forecast next week", "healthy dinner recipes",
+                "best travel destinations", "improve work productivity", "learn programming online",
+                "home workout routines", "stock market trends", "new movie releases",
+                "sustainable living tips", "digital photography techniques", "mental health resources",
+                "online courses", "budget travel ideas", "beginner gardening tips",
+                "career development strategies", "easy cooking tutorials", "local events this weekend",
+                "science discoveries", "environmental conservation", "fitness trackers comparison",
+                "book recommendations", "AI in healthcare", "mobile app development", 
+                "renewable energy", "work from home tips", "language learning apps",
+                "personal finance", "VR technology", "stress relief techniques"
             ];
             
             // DOM elements
@@ -747,16 +584,12 @@
             const searchDurationValue = document.getElementById('searchDurationValue');
             const startBtn = document.getElementById('startBtn');
             const stopBtn = document.getElementById('stopBtn');
-            const totalSearches = document.getElementById('totalSearches');
-            const completedSearches = document.getElementById('completedSearches');
             const logEntries = document.getElementById('logEntries');
             const progressFill = document.getElementById('progressFill');
             const progressText = document.getElementById('progressText');
             const progressPercent = document.getElementById('progressPercent');
-            const nextSearchTerm = document.getElementById('nextSearchTerm');
             const logStatus = document.getElementById('logStatus');
             const pointsEarned = document.getElementById('pointsEarned');
-            const pointsProgress = document.getElementById('pointsProgress');
             const searchInput = document.getElementById('searchInput');
             const searchBtn = document.getElementById('searchBtn');
             const searchResults = document.getElementById('searchResults');
@@ -898,15 +731,6 @@
             // Update points display
             function updatePoints() {
                 pointsEarned.textContent = points;
-                const percent = Math.min(100, Math.round((points / 150) * 100));
-                pointsProgress.style.width = `${percent}%`;
-            }
-            
-            // Start a new search session
-            function startNewSession() {
-                currentSession = Date.now();
-                addLogEntry("Starting new search session", "play-circle");
-                return currentSession;
             }
             
             // Start the auto-search process
@@ -919,23 +743,21 @@
                 totalSearchCount = parseInt(searchCount.value);
                 points = 0;
                 
-                totalSearches.textContent = totalSearchCount;
-                completedSearches.textContent = '0';
                 logStatus.textContent = "Running";
                 logStatus.style.color = "#107c10";
                 pointsEarned.textContent = "0";
-                pointsProgress.style.width = "0%";
+                progressFill.style.width = "0%";
+                progressText.textContent = "0%";
+                progressPercent.textContent = "0%";
                 
                 // Start a new session
-                startNewSession();
-                
-                addLogEntry("Starting Bing rewards solution", "rocket");
+                currentSession = Date.now();
+                addLogEntry("Starting new search session", "play-circle");
                 addLogEntry("Using same-page search simulation", "user-shield");
                 updateProgress();
                 
                 // Generate first search term
                 nextTerm = generateSearchTerm();
-                nextSearchTerm.textContent = nextTerm;
                 
                 startSearchCycle();
             });
@@ -965,7 +787,6 @@
                 // Schedule next steps
                 setTimeout(() => {
                     completedSearchCount++;
-                    completedSearches.textContent = completedSearchCount;
                     
                     // Award points (5 points per search)
                     points += 5;
@@ -975,7 +796,6 @@
                     
                     // Generate next search term
                     nextTerm = generateSearchTerm();
-                    nextSearchTerm.textContent = nextTerm;
                     
                     // Calculate random delay until next search
                     const baseDelay = parseInt(searchDelay.value);
