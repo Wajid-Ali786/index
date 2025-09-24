@@ -1,826 +1,398 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bing Rewards Solution</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            background: linear-gradient(135deg, #0067b8, #008376, #00a4ef);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 15px;
-            color: #333;
-        }
-        
-        .container {
-            width: 100%;
-            max-width: 800px;
-            background: rgba(255, 255, 255, 0.97);
-            border-radius: 20px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-            overflow: hidden;
-        }
-        
-        header {
-            background: linear-gradient(90deg, #0067b8, #008376);
-            color: white;
-            padding: 25px 20px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        header::before {
-            content: "";
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
-            transform: rotate(30deg);
-        }
-        
-        .logo {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 15px;
-        }
-        
-        .logo i {
-            font-size: 2.5rem;
-            color: #ffb900;
-        }
-        
-        header h1 {
-            font-size: 1.8rem;
-            margin-bottom: 8px;
-            position: relative;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
-        }
-        
-        header p {
-            font-size: 1rem;
-            opacity: 0.9;
-            position: relative;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        .main-content {
-            padding: 25px;
-        }
-        
-        .control-panel {
-            background: #f3f8fb;
-            border-radius: 15px;
-            padding: 25px;
-            margin-bottom: 25px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        }
-        
-        .panel-title {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 20px;
-            color: #0067b8;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #e0f0f7;
-        }
-        
-        .panel-title i {
-            font-size: 1.4rem;
-            color: #008376;
-        }
-        
-        .settings-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin-bottom: 25px;
-        }
-        
-        .form-group {
-            margin-bottom: 0;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: #005a9e;
-            font-size: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        input[type="range"] {
-            width: 100%;
-            height: 8px;
-            border-radius: 4px;
-            background: #e0f0f7;
-            outline: none;
-        }
-        
-        .range-container {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-top: 5px;
-        }
-        
-        .range-value {
-            min-width: 40px;
-            text-align: center;
-            font-weight: 700;
-            color: #0067b8;
-            font-size: 1.1rem;
-            background: #e6f4f1;
-            padding: 5px 10px;
-            border-radius: 10px;
-        }
-        
-        .button-group {
-            display: flex;
-            gap: 15px;
-            margin-top: 15px;
-        }
-        
-        button {
-            padding: 16px 24px;
-            border: none;
-            border-radius: 12px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            flex: 1;
-        }
-        
-        #startBtn {
-            background: linear-gradient(90deg, #107c10, #00a400);
-            color: white;
-        }
-        
-        #startBtn:hover, #startBtn:active {
-            background: linear-gradient(90deg, #0d6a0d, #008c00);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-        }
-        
-        #stopBtn {
-            background: linear-gradient(90deg, #d83b01, #e81123);
-            color: white;
-        }
-        
-        #stopBtn:hover, #stopBtn:active {
-            background: linear-gradient(90deg, #c13501, #d10f20);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-        }
-        
-        .progress-container {
-            background: white;
-            border-radius: 12px;
-            padding: 15px;
-            margin: 20px 0;
-            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
-            border: 1px solid #e0f0f7;
-        }
-        
-        .progress-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-            font-weight: 600;
-            color: #005a9e;
-            font-size: 0.95rem;
-        }
-        
-        .progress-bar {
-            height: 20px;
-            background: #e0f0f7;
-            border-radius: 10px;
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #0067b8, #008376);
-            border-radius: 10px;
-            width: 0%;
-            transition: width 0.5s ease;
-        }
-        
-        .progress-text {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: white;
-            font-weight: 600;
-            font-size: 0.8rem;
-        }
-        
-        .search-simulation {
-            margin-top: 25px;
-            padding: 20px;
-            background: #f3f8fb;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        }
-        
-        .bing-search-container {
-            position: relative;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        .bing-search-box {
-            display: flex;
-            width: 100%;
-            border: 2px solid #008376;
-            border-radius: 30px;
-            overflow: hidden;
-            background: white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        
-        .bing-search-input {
-            flex: 1;
-            padding: 12px 20px;
-            border: none;
-            outline: none;
-            font-size: 16px;
-            background: #f8f9fa;
-        }
-        
-        .bing-search-btn {
-            background: #0067b8;
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background 0.3s;
-        }
-        
-        .bing-search-btn:hover {
-            background: #005a9e;
-        }
-        
-        .search-results {
-            margin-top: 20px;
-            background: white;
-            border-radius: 12px;
-            padding: 15px;
-            max-height: 300px;
-            overflow-y: auto;
-            box-shadow: 0 3px 12px rgba(0,0,0,0.06);
-            border: 1px solid #e0f0f7;
-        }
-        
-        .result-item {
-            padding: 10px 0;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .result-title {
-            font-weight: 600;
-            color: #0067b8;
-            margin-bottom: 5px;
-        }
-        
-        .result-url {
-            color: #008376;
-            font-size: 14px;
-            margin-bottom: 5px;
-        }
-        
-        .result-snippet {
-            font-size: 14px;
-            color: #444;
-        }
-        
-        .result-item:last-child {
-            border-bottom: none;
-        }
-        
-        .current-search-status {
-            text-align: center;
-            margin-top: 10px;
-            font-size: 14px;
-            color: #0067b8;
-            font-weight: 500;
-            min-height: 22px;
-        }
-        
-        .points-display {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 15px;
-            margin: 15px 0;
-            background: #e6f4f1;
-            border-radius: 12px;
-            padding: 15px;
-        }
-        
-        .points-value {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: #107c10;
-            min-width: 80px;
-            text-align: center;
-        }
-        
-        .points-label {
-            font-size: 1.1rem;
-            color: #5a6a7f;
-        }
-        
-        .log-container {
-            background: white;
-            border-radius: 12px;
-            padding: 15px;
-            height: 180px;
-            overflow-y: auto;
-            box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.05);
-            border: 1px solid #e0f0f7;
-            margin-top: 25px;
-        }
-        
-        .log-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-            font-size: 0.95rem;
-            color: #005a9e;
-            font-weight: 600;
-        }
-        
-        .log-entry {
-            padding: 10px 0;
-            border-bottom: 1px solid #f0f7fa;
-            font-size: 0.9rem;
-            color: #444;
-            display: flex;
-            align-items: flex-start;
-            gap: 8px;
-        }
-        
-        .log-entry:last-child {
-            border-bottom: none;
-        }
-        
-        .log-icon {
-            color: #008376;
-            font-size: 0.9rem;
-            margin-top: 3px;
-            min-width: 20px;
-        }
-        
-        .log-timestamp {
-            color: #008376;
-            font-size: 0.8rem;
-            min-width: 60px;
-            font-weight: 500;
-        }
-        
-        .disclaimer {
-            margin-top: 20px;
-            padding: 15px;
-            background: #fff8e1;
-            border-radius: 12px;
-            border-left: 4px solid #ffb900;
-            font-size: 0.85rem;
-            color: #7d6608;
-            text-align: center;
-        }
-        
-        .disclaimer strong {
-            color: #d35400;
-        }
-        
-        @media (max-width: 768px) {
-            .container {
-                max-width: 95%;
-            }
-            
-            .settings-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .button-group {
-                flex-direction: column;
-            }
-            
-            .bing-search-container {
-                padding: 0 10px;
-            }
-        }
-    </style>
+    <title>Home</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <div class="container">
-        <header>
-            <div class="logo">
-                <i class="fab fa-microsoft"></i>
-                <h1>Bing Reward Solution</h1>
-            </div>
-            <p>Earn points without pop-ups or multiple tabs</p>
-        </header>
-        
-        <div class="main-content">
-            <div class="control-panel">
-                <div class="panel-title">
-                    <i class="fas fa-cog"></i>
-                    <h2>Search Configuration</h2>
+    <header class="header">
+        <div class="container">
+            <div class="content">
+                <div class="logo">
+                    <img src="imgs/header-logo.svg" alt="header logo">
                 </div>
-                
-                <div class="settings-grid">
-                    <div class="form-group">
-                        <label for="searchCount"><i class="fas fa-search"></i> Number of Searches</label>
-                        <div class="range-container">
-                            <input type="range" id="searchCount" min="5" max="50" value="20">
-                            <span class="range-value" id="searchCountValue">20</span>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="searchDelay"><i class="fas fa-hourglass-half"></i> Delay Between Searches (seconds)</label>
-                        <div class="range-container">
-                            <input type="range" id="searchDelay" min="3" max="90" value="8">
-                            <span class="range-value" id="searchDelayValue">8</span>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="searchDuration"><i class="fas fa-clock"></i> Search Duration (seconds)</label>
-                        <div class="range-container">
-                            <input type="range" id="searchDuration" min="5" max="60" value="12">
-                            <span class="range-value" id="searchDurationValue">12</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="button-group">
-                    <button id="startBtn"><i class="fas fa-play"></i> Start Auto-Search</button>
-                    <button id="stopBtn"><i class="fas fa-stop"></i> Stop Process</button>
-                </div>
-                
-                <div class="progress-container">
-                    <div class="progress-header">
-                        <span>Search Progress</span>
-                        <span id="progressPercent">0%</span>
-                    </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill" id="progressFill"></div>
-                        <div class="progress-text" id="progressText">0%</div>
-                    </div>
-                </div>
-                
-                <div class="points-display">
-                    <div class="points-value" id="pointsEarned">0</div>
-                    <div class="points-label">Points Earned</div>
-                </div>
-            </div>
-            
-            <div class="search-simulation">
-                <div class="panel-title">
-                    <i class="fas fa-search"></i>
-                    <h2>Search Simulation</h2>
-                </div>
-                
-                <div class="bing-search-container">
-                    <div class="bing-search-box">
-                        <input type="text" class="bing-search-input" id="searchInput" placeholder="Search Bing..." readonly>
-                        <button class="bing-search-btn" id="searchBtn">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </div>
-                    <div class="current-search-status">
-                        <span id="currentSearchStatus">Ready to start</span>
-                    </div>
-                    
-                    <div class="search-results" id="searchResults">
-                        <div class="result-item">
-                            <div class="result-title">Bing Rewards Auto Search</div>
-                            <div class="result-url">https://rewards.bing.com</div>
-                            <div class="result-snippet">Start the auto-search process to see simulated search results here. All searches happen on this page without opening new tabs.</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="log-container">
-                <div class="log-header">
-                    <h3><i class="fas fa-list"></i> Activity Log</h3>
-                    <span id="logStatus">System Ready</span>
-                </div>
-                <div id="logEntries">
-                    <div class="log-entry">
-                        <i class="fas fa-info-circle log-icon"></i>
-                        <span class="log-timestamp">[System]</span>
-                        <span>Rewards solution initialized</span>
-                    </div>
-                    <div class="log-entry">
-                        <i class="fas fa-lightbulb log-icon"></i>
-                        <span class="log-timestamp">[Tip]</span>
-                        <span>For best results, run during daytime hours</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="disclaimer">
-                <strong>Note:</strong> This tool simulates Bing searches without opening new tabs. Ensure you're logged into your Microsoft account. Points may take several minutes to appear in your account.
+                <div class="logo-text">田原市の特産品</div>
             </div>
         </div>
-    </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Enhanced database of natural search phrases
-            const searchPhrases = [
-                "latest technology news", "weather forecast next week", "healthy dinner recipes",
-                "best travel destinations", "improve work productivity", "learn programming online",
-                "home workout routines", "stock market trends", "new movie releases",
-                "sustainable living tips", "digital photography techniques", "mental health resources",
-                "online courses", "budget travel ideas", "beginner gardening tips",
-                "career development strategies", "easy cooking tutorials", "local events this weekend",
-                "science discoveries", "environmental conservation", "fitness trackers comparison",
-                "book recommendations", "AI in healthcare", "mobile app development", 
-                "renewable energy", "work from home tips", "language learning apps",
-                "personal finance", "VR technology", "stress relief techniques"
-            ];
-            
-            // DOM elements
-            const searchCount = document.getElementById('searchCount');
-            const searchDelay = document.getElementById('searchDelay');
-            const searchDuration = document.getElementById('searchDuration');
-            const searchCountValue = document.getElementById('searchCountValue');
-            const searchDelayValue = document.getElementById('searchDelayValue');
-            const searchDurationValue = document.getElementById('searchDurationValue');
-            const startBtn = document.getElementById('startBtn');
-            const stopBtn = document.getElementById('stopBtn');
-            const logEntries = document.getElementById('logEntries');
-            const progressFill = document.getElementById('progressFill');
-            const progressText = document.getElementById('progressText');
-            const progressPercent = document.getElementById('progressPercent');
-            const logStatus = document.getElementById('logStatus');
-            const pointsEarned = document.getElementById('pointsEarned');
-            const searchInput = document.getElementById('searchInput');
-            const searchBtn = document.getElementById('searchBtn');
-            const searchResults = document.getElementById('searchResults');
-            const currentSearchStatus = document.getElementById('currentSearchStatus');
-            
-            // State variables
-            let isRunning = false;
-            let searchCounter = 0;
-            let totalSearchCount = 0;
-            let completedSearchCount = 0;
-            let timer = null;
-            let nextTerm = "";
-            let points = 0;
-            let currentSession = null;
-            
-            // Initialize range values
-            searchCountValue.textContent = searchCount.value;
-            searchDelayValue.textContent = searchDelay.value;
-            searchDurationValue.textContent = searchDuration.value;
-            
-            // Update range value displays
-            searchCount.addEventListener('input', function() {
-                searchCountValue.textContent = this.value;
-            });
-            
-            searchDelay.addEventListener('input', function() {
-                searchDelayValue.textContent = this.value;
-            });
-            
-            searchDuration.addEventListener('input', function() {
-                searchDurationValue.textContent = this.value;
-            });
-            
-            // Generate random search term
-            function generateSearchTerm() {
-                const randomIndex = Math.floor(Math.random() * searchPhrases.length);
-                return searchPhrases[randomIndex];
-            }
-            
-            // Generate fake search results
-            function generateSearchResults(term) {
-                const results = [];
-                const numResults = Math.floor(Math.random() * 4) + 3; // 3-6 results
-                
-                for (let i = 0; i < numResults; i++) {
-                    results.push({
-                        title: `Result for "${term}" - ${i+1}`,
-                        url: `https://www.example.com/search?q=${encodeURIComponent(term)}&result=${i+1}`,
-                        snippet: `This is a sample search result for "${term}". This result demonstrates how the auto-search system displays information without opening new tabs.`
-                    });
-                }
-                
-                return results;
-            }
-            
-            // Display search results
-            function displaySearchResults(term) {
-                const results = generateSearchResults(term);
-                let resultsHTML = '';
-                
-                results.forEach(result => {
-                    resultsHTML += `
-                        <div class="result-item">
-                            <div class="result-title">${result.title}</div>
-                            <div class="result-url">${result.url}</div>
-                            <div class="result-snippet">${result.snippet}</div>
+    </header>
+    <section class="banner">
+        <div class="container">
+            <div class="content">
+                <div class="banner-h2">たはらの恵み</div>
+                <div class="banner-h2">花咲く食卓へ</div>
+                <div class="banner-h2-last">
+                    <p class="p">TAHARA</p>
+                    <div class="db-text">
+                        <p>AICHI</p>
+                        <p class="p-2nd">PREFECTURE</p>
+                    </div>
+                    <img src="imgs/banner-logo.svg" alt="banner logo" class="banner-logo">
+                </div>
+                <div class="dropdown">
+                    <div class="dropdown-bar"></div>
+                    <div class="dropdown-content">
+                        <p><img src="imgs/banner-dropdown-icon.svg" alt="banner dropdown icon"><a
+                                href="#">田原市のこだわり特産品</a>
+                        </p>
+                        <p><img src="imgs/banner-dropdown-icon.svg" alt="banner dropdown icon"><a href="#">タハナについて</a>
+                        </p>
+                        <p><img src="imgs/banner-dropdown-icon.svg" alt="banner dropdown icon"><a href="#">田原市の特産品</a>
+                        </p>
+                        <p><img src="imgs/banner-dropdown-icon.svg" alt="banner dropdown icon"><a
+                                href="#">田原市のこだわり生産者</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="intro-section">
+        <div class="content">
+            <div class="itro-column first">
+                <div class="intro-image" style=" width: 80%; height: 390px; ">
+                    <img src="imgs/intro-img-1.png" alt="Intro Image 1" class="default">
+                    <img src="imgs/intro-img-hover-1.png" alt="Intro Hover Image 1" class="hover">
+                </div>
+                <div class="intro-image" style=" width: 70%; height: 280px; align-self: end; margin: 20px 20px 0 0">
+                    <img src="imgs/intro-img-2.png" alt="Intro Image 2" class="default">
+                    <img src="imgs/intro-img-hover-2.png" alt="Intro Hover Image 2" class="hover">
+                </div>
+            </div>
+            <div class="itro-column Second">
+                <div class="two-column">
+                    <div class="intro-image" style=" width: 50%; height: 500px; ">
+                        <img src="imgs/intro-img-3.png" alt="Intro Image 3" class="default">
+                        <img src="imgs/intro-img-hover-3.png" alt="Intro Hover Image 3" class="hover">
+                        <p class="img-abslute-text hover">カンプ</p>
+                    </div>
+                    <div style="width: 45% ;">
+                        <div class="intro-image" style="height: 230px; margin-top: 50px;">
+                            <img src="imgs/intro-img-4.png" alt="Intro Image 4" class="default">
+                            <img src="imgs/intro-img-hover-4.png" alt="Intro Hover Image 4" class="hover">
                         </div>
-                    `;
-                });
-                
-                searchResults.innerHTML = resultsHTML;
-            }
-            
-            // Simulate search in UI
-            function simulateSearch(term) {
-                // Set search term in input
-                searchInput.value = term;
-                
-                // Show searching status
-                currentSearchStatus.textContent = `Searching for "${term}"...`;
-                
-                // Simulate typing effect
-                let typedTerm = '';
-                let charIndex = 0;
-                const typingInterval = setInterval(() => {
-                    if (charIndex < term.length) {
-                        typedTerm += term.charAt(charIndex);
-                        searchInput.value = typedTerm;
-                        charIndex++;
-                    } else {
-                        clearInterval(typingInterval);
-                        
-                        // Simulate search button click
-                        setTimeout(() => {
-                            searchBtn.classList.add('active');
-                            setTimeout(() => {
-                                searchBtn.classList.remove('active');
-                                
-                                // Display results after a short delay
-                                setTimeout(() => {
-                                    displaySearchResults(term);
-                                    currentSearchStatus.textContent = `Showing results for "${term}"`;
-                                }, 300);
-                            }, 200);
-                        }, 200);
-                    }
-                }, 50);
-            }
-            
-            // Add log entry
-            function addLogEntry(message, icon = "info-circle") {
-                const now = new Date();
-                const timestamp = `[${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}:${now.getSeconds().toString().padStart(2, '0')}]`;
-                
-                const logEntry = document.createElement('div');
-                logEntry.className = 'log-entry';
-                logEntry.innerHTML = `
-                    <i class="fas fa-${icon} log-icon"></i>
-                    <span class="log-timestamp">${timestamp}</span>
-                    <span>${message}</span>
-                `;
-                
-                logEntries.insertBefore(logEntry, logEntries.firstChild);
-                
-                // Limit to 10 log entries
-                if (logEntries.children.length > 10) {
-                    logEntries.removeChild(logEntries.lastChild);
-                }
-            }
-            
-            // Update progress bar
-            function updateProgress() {
-                const percent = totalSearchCount === 0 ? 0 : Math.round((completedSearchCount / totalSearchCount) * 100);
-                progressFill.style.width = `${percent}%`;
-                progressText.textContent = `${percent}%`;
-                progressPercent.textContent = `${percent}%`;
-            }
-            
-            // Update points display
-            function updatePoints() {
-                pointsEarned.textContent = points;
-            }
-            
-            // Start the auto-search process
-            startBtn.addEventListener('click', function() {
-                if (isRunning) return;
-                
-                isRunning = true;
-                searchCounter = 0;
-                completedSearchCount = 0;
-                totalSearchCount = parseInt(searchCount.value);
-                points = 0;
-                
-                logStatus.textContent = "Running";
-                logStatus.style.color = "#107c10";
-                pointsEarned.textContent = "0";
-                progressFill.style.width = "0%";
-                progressText.textContent = "0%";
-                progressPercent.textContent = "0%";
-                
-                // Start a new session
-                currentSession = Date.now();
-                addLogEntry("Starting new search session", "play-circle");
-                addLogEntry("Using same-page search simulation", "user-shield");
-                updateProgress();
-                
-                // Generate first search term
-                nextTerm = generateSearchTerm();
-                
-                startSearchCycle();
-            });
-            
-            // Start the search cycle
-            function startSearchCycle() {
-                if (!isRunning || searchCounter >= totalSearchCount) {
-                    isRunning = false;
-                    addLogEntry("Auto-search completed successfully", "check-circle");
-                    addLogEntry(`${points} Microsoft Rewards points earned`, "coins");
-                    logStatus.textContent = "Completed";
-                    logStatus.style.color = "#107c10";
-                    currentSearchStatus.textContent = "Search completed";
-                    return;
-                }
-                
-                searchCounter++;
-                
-                // Perform the search simulation
-                simulateSearch(nextTerm);
-                addLogEntry(`Search #${searchCounter}: "${nextTerm}"`, "search");
-                
-                // Calculate random duration for search to complete
-                const baseDuration = parseInt(searchDuration.value);
-                const randomizedDuration = Math.max(5, baseDuration * (0.8 + Math.random() * 0.4));
-                
-                // Schedule next steps
-                setTimeout(() => {
-                    completedSearchCount++;
-                    
-                    // Award points (5 points per search)
-                    points += 5;
-                    updatePoints();
-                    
-                    updateProgress();
-                    
-                    // Generate next search term
-                    nextTerm = generateSearchTerm();
-                    
-                    // Calculate random delay until next search
-                    const baseDelay = parseInt(searchDelay.value);
-                    const randomizedDelay = Math.max(3, baseDelay * (0.8 + Math.random() * 0.4));
-                    
-                    // Schedule next search
-                    setTimeout(() => {
-                        addLogEntry(`Starting next search in ${Math.round(randomizedDelay)}s`, "clock");
-                        startSearchCycle();
-                    }, randomizedDelay * 1000);
-                    
-                }, randomizedDuration * 1000);
-            }
-            
-            // Stop the process
-            stopBtn.addEventListener('click', function() {
-                if (!isRunning) return;
-                
-                isRunning = false;
-                addLogEntry("Process stopped by user", "pause-circle");
-                logStatus.textContent = "Stopped";
-                logStatus.style.color = "#e81123";
-                currentSearchStatus.textContent = "Search stopped";
-            });
-        });
-    </script>
+                        <div class="intro-image" style=" width: 300px; margin: 20px 0 -20px -10px;">
+                            <img src="imgs/intro-img-5.png" alt="Intro Image 5">
+                        </div>
+                    </div>
+                </div>
+                <div class="text-div">
+                    <p class="title">海と太陽が育てる、たはらの恵み</p>
+                    <p class="subtitle">愛知県渥美半島に位置する田原市は、北に三河湾、南に太平洋を望む豊かな自然環境に恵まれています。<br>
+                        温暖な気候と肥沃な大地のもと、昭和43年の豊川用水通水を契機に大規模農業が発展し、現在では農業産出額全国トップクラスを誇る「農業のまち」です。<br>
+                        四季折々の花が咲き誇る“日本一の花の生産地”でもあり、美しい花々と新鮮な野菜・果物が全国に届けられています。<br>
+                        ぜひ田原市が育む旬の幸をお楽しみください。
+                    </p>
+                </div>
+            </div>
+            <div class="itro-column third">
+                <div class="two-column">
+                    <div
+                        style="width: 45%;display: flex; flex-direction: column; justify-content: flex-end;  gap: 50px;">
+                        <div class="text-div">
+                            <p class="text">旬のおいしさを</p>
+                            <p class="text second">渥美半島から</p>
+                            <p class="color-text">田原市</p>
+                        </div>
+                        <div class="intro-image" style="width: 90%;height: 350px; ">
+                            <img src="imgs/intro-img-6.png" alt="Intro Image 6" class="default">
+                            <img src="imgs/intro-img-hover-6.png" alt="Intro Hover Image 6" class="hover">
+                        </div>
+                    </div>
+                    <div
+                        style="width: 45%; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: 100px;">
+                        <div class="intro-image" style=" width: 220px; height: 220px; ">
+                            <img src="imgs/intro-img-7.png" alt="Intro Image 7">
+                        </div>
+                        <div class="intro-image" style=" width: 150px; height: 200px; ">
+                            <img src="imgs/intro-img-8.png" alt="Intro Image 8" class="default">
+                            <img src="imgs/intro-img-hover-8.png" alt="Intro Hover Image 8" class="hover">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="flower-section">
+        <div class="container">
+            <h6 class="tag"><span>田原市の</span></h6>
+            <h2 class="heading">こだわり特産品</h2>
+            <div class="content">
+                <div class="left-side">
+                    <div>
+                        <p class="p_01">*01</p>
+                        <p class="p_flowers">Flowers</p>
+                        <p class="p_flowers-2">花</p>
+                        <img src="imgs/flower-img-1.png" alt="flower image 1" class="flower-img-1">
+                    </div>
+                    <div style="margin-top: 50px;">
+                        <div style="position: relative;">
+                            <img src="imgs/flower-img-3.png" alt="flower image 3" class="flower-img-3">
+                            <p>カンプ</p>
+                        </div>
+                        <div class="text">
+                            <h2 class="flower-h2 orange"><span>太陽と潮風が育む果物の王様<br>田原市のアールスメロン</span></h2>
+                            <p class="flower-p">
+                                渥美半島に位置する田原市は、全国有数のメロン産地。特に“アールスメロン”は、1株に1玉だけを贅沢に育て上げることで、きめ細やかな網目と芳醇な香り、濃厚な甘さを実現しています。加えて「イエローキング」「タカミ」「ルピアレッド」など多彩な品種が出荷され、夏にはメロン狩りや直売イベントも大人気。贈答用にも食卓用にも、田原市のメロンは人々を笑顔にする果実です。
+                            </p>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="p_03">*03</p>
+                        <p class="p_vegetables">Vegetables</p>
+                        <p class="p_vegetables-2">野菜</p>
+                        <img src="imgs/flower-img-5.png" alt="flower image 5" class="flower-img-5">
+                    </div>
+                </div>
+                <div class="right-side">
+                    <div>
+                        <img src="imgs/flower-img-2.png" alt="flower image 2" class="flower-img-2">
+                        <div class="text">
+                            <h2 class="flower-h2 red"><span>日本一の花のまち<br>暮らしを彩る、田原市の花</span></h2>
+                            <p class="flower-p">
+                                愛知県田原市は、輪菊をはじめとする様々な品種の花を育てる、日本屈指の花の産地です。温暖な気候と豊かな土壌に育まれた花々は、ブーケやフラワーアレンジメントとして生活を華やかに彩り、国内外で高い評価を受けています。地域全体で「花のある暮らし」を提案し、四季を通じて花の魅力を届けています。
+                            </p>
+                        </div>
+                    </div>
+                    <div style="margin-top: 50px;">
+                        <p class="p_02">*02</p>
+                        <p class="p_fruits">Fruits</p>
+                        <p class="p_fruits-2">果<br>物</p>
+                        <img src="imgs/flower-img-4.png" alt="flower image 4" class="flower-img-4">
+                    </div>
+                    <div>
+                        <div style="position: relative;">
+                            <img src="imgs/flower-img-6.png" alt="flower image 6" class="flower-img-6">
+                            <p class="img-abslute-text">公式</p>
+                        </div>
+                        <div class="text">
+                            <h2 class="flower-h2 green"><span>大地の恵み、渥美半島から<br>四季折々の新鮮野菜</span></h2>
+                            <p class="flower-p">
+                                渥美半島に位置する田原市は、全国有数のメロン産地。特に“アールスメロン”は、1株に1玉だけを贅沢に育て上げることで、きめ細やかな網目と芳醇な香り、濃厚な甘さを実現しています。加えて「イエローキング」「タカミ」「ルピアレッド」など多彩な品種が出荷され、夏にはメロン狩りや直売イベントも大人気。贈答用にも食卓用にも、田原市のメロンは人々を笑顔にする果実です。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="third-section">
+        <div class="container">
+            <div class="heading-div">
+                <img src="imgs/third-section-img-1.png" alt="flower image" class="img-1">
+                <img src="imgs/third-section-img-2.png" alt="title image" class="img-2">
+            </div>
+            <div class="content">
+                <div class="part-1">
+                    <p class="p1-text">
+                        「タハナ」って？ <br>
+                        「タハナ」とはタハラ（田原）のハナ（花）の<br>
+                        定期便のことです。<br>
+                        毎月、おうちのポストに花を直送します。<br>
+                    </p>
+                    <a href="#" class="part-1-button">タハナって？
+                        <svg xmlns="http://www.w3.org/2000/svg" version="1.2" viewBox="0 0 13 11" width="13"
+                            height="13">
+                            <path d="m3 0h1v8h-1zm9 0h1v8h-1zm-8 0h8v1h-8zm0 7h8v1h-8zm-4-2h1v5h-1zm0 5h6v1h-6z" />
+                        </svg>
+                    </a>
+                </div>
+                <div class="cards-section">
+                    <h2 class="h2-title">「日本一の花の生産地」</h2>
+                    <h2 class="h2-subtitle">からあなたの暮らしに彩りを。</h2>
+                    <div class="cards-container">
+                        <div class="my-card">
+                            <div class="card-img">
+                                <img src="imgs/my-card-img-1.png" alt="Card image 1">
+                            </div>
+                            <div class="card-tag">
+                                <p class="tag-text">Step<span>1</span></p>
+                            </div>
+                            <div class="card-content">
+                                <p class="card-title">ホームページからお好きな「タハナ」をクリックして購入・支払方法を選択</p>
+                            </div>
+                        </div>
+
+                        <div class="arrow-btwn-card"><img src="imgs/arrow-between-mycard.svg" alt="arrow btwen cards">
+                        </div>
+                        <div class="my-card">
+                            <div class="card-img">
+                                <img src="imgs/my-card-img-2.png" alt="Card image 2">
+                            </div>
+                            <div class="card-tag step-2">
+                                <p class="tag-text">Step<span>2</span></p>
+                            </div>
+                            <div class="card-content">
+                                <p class="card-title">タハナ認定事業者から、田原市で生産された花をアレンジして月1回発送</p>
+                            </div>
+                        </div>
+
+                        <div class="arrow-btwn-card"><img src="imgs/arrow-between-mycard.svg" alt="arrow btwen cards">
+                        </div>
+
+                        <div class="my-card">
+                            <div class="card-img">
+                                <img src="imgs/my-card-img-3.png" alt="Card image 3">
+                            </div>
+                            <div class="card-tag step-3">
+                                <p class="tag-text">Step<span>3</span></p>
+                            </div>
+                            <div class="card-content">
+                                <p class="card-title">宅配便にてご自宅のポストまたはお手元にお届け</p>
+                            </div>
+                        </div>
+
+                        <div class="arrow-btwn-card"><img src="imgs/arrow-between-mycard.svg" alt="arrow btwen cards">
+                        </div>
+
+                        <div class="my-card">
+                            <div class="card-img">
+                                <img src="imgs/my-card-img-4.png" alt="Card image 4">
+                            </div>
+                            <div class="card-tag step-4">
+                                <p class="tag-text">Step<span>4</span></p>
+                            </div>
+                            <div class="card-content">
+                                <p class="card-title">箱から花を取り出し、花を花瓶に入れるまたはそのまま飾るだけ</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="main-card">
+                    <div class="img-div-1">
+                        <img src="imgs/third-section-main-card-img-1.png" alt="image 1">
+                    </div>
+                    <div class="text-div">
+                        <div class="heading">
+                            <img src="imgs/third-section-main-card-text-img-1.png" alt="text aound image">
+                            <div>
+                                <h2 class="h2-title">●<span>タハナ</span>●</h2>
+                                <h2 class="h2-subtitle">プレゼントキャンペーン</h2>
+                            </div>
+                            <img src="imgs/third-section-main-card-text-img-2.png" alt="text aound image">
+                        </div>
+                        <h2 class="h2-description">期間中、ここからアンケートにご回答いただいた方の中から 抽選で10名様に「タハナ」1ケ月分をプレゼント！</h2>
+                        <a href="#" class="main-card-button"><span>アンケートはこちら</span></a>
+                    </div>
+                    <div class="img-div-2">
+                        <img src="imgs/third-section-main-card-img-2.png" alt="image 2">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="producer-section">
+        <div class="container">
+            <h6 class="tag"><span>田原市の</span></h6>
+            <h2 class="heading">こだわり生産者</h2>
+            <div class="card-container">
+                <div class="producer-card">
+                    <div class="img">
+                        <img src="imgs/producer-card-img-1.png" alt="producer card image">
+                    </div>
+                    <div class="card-content">
+                        <h2 class="h2-title">田原市</h2>
+                        <h2 class="h2-subtitle">【渥美半島ブランド】鈴木農園</h2>
+                        <h2 class="h2-desc">🍈海外セレブ達が大絶賛🍅日本トップクラスの日照時間と海風から畑にミネラルが降り注ぐ渥美半島ブランド ※現在、渥美半島ブラ</h2>
+                    </div>
+                </div>
+                <div class="producer-card">
+                    <div class="img">
+                        <img src="imgs/producer-card-img-2.png" alt="producer card image">
+                    </div>
+                    <div class="card-content">
+                        <h2 class="h2-title">田原市</h2>
+                        <h2 class="h2-subtitle">渡辺農園</h2>
+                        <h2 class="h2-desc">愛知県田原市"渥美半島"にて夫婦で農業を営んでいます渡辺農園です！ 「農を通じてひとを笑顔に！」をモッ...トーに一生懸命お野</h2>
+                    </div>
+                </div>
+                <div class="producer-card">
+                    <div class="img">
+                        <img src="imgs/producer-card-img-3.png" alt="producer card image">
+                    </div>
+                    <div class="card-content">
+                        <h2 class="h2-title">田原市福江町</h2>
+                        <h2 class="h2-subtitle">宮下宮川ファーム</h2>
+                        <h2 class="h2-desc">私は、愛知県の最南端に位置する渥美半島「田原市」を拠点に活動する農業系YouTuberです！主に農業の魅力や...家庭菜園の様</h2>
+                    </div>
+                </div>
+                <div class="producer-card">
+                    <div class="img">
+                        <img src="imgs/producer-card-img-4.png" alt="producer card image">
+                    </div>
+                    <div class="card-content">
+                        <h2 class="h2-title">愛知県田原市</h2>
+                        <h2 class="h2-subtitle">今川農園</h2>
+                        <h2 class="h2-desc">はじめまして、今川農園の今川文哉です。 私は愛知県田原市に住んでいて、田原市は農業が人気があります。家...の周り(近所)のほ</h2>
+                    </div>
+                </div>
+                <div class="producer-card">
+                    <div class="img">
+                        <img src="imgs/producer-card-img-5.png" alt="producer card image">
+                    </div>
+                    <div class="card-content">
+                        <h2 class="h2-title">田原市</h2>
+                        <h2 class="h2-subtitle">こどもやさい自然農園</h2>
+                        <h2 class="h2-desc">保育畑で28年の保育士生活を終え、現在愛知県田原市で自然栽培で30種類くらいの野菜とバナナとレモンを...育て、旬で元気な野菜</h2>
+                    </div>
+                </div>
+                <div class="producer-card">
+                    <div class="img">
+                        <img src="imgs/producer-card-img-6.png" alt="producer card image">
+                    </div>
+                    <div class="card-content">
+                        <h2 class="h2-title">田原市</h2>
+                        <h2 class="h2-subtitle">マーコ</h2>
+                        <h2 class="h2-desc">愛知県田原市と長野県原村で農業を営んでおります。日本では珍しい「1年中いちごを栽培」している農家です。 『...みんなが笑顔に</h2>
+                    </div>
+                </div>
+                <div class="producer-card">
+                    <div class="img">
+                        <img src="imgs/producer-card-img-7.png" alt="producer card image">
+                    </div>
+                    <div class="card-content">
+                        <h2 class="h2-title">田原市</h2>
+                        <h2 class="h2-subtitle">パッチファーム</h2>
+                        <h2 class="h2-desc">2015年4月、Patch Farm(パッチファーム)は始まりました。 渥美半島の温暖な気候の下、パッチワークの様...にカラ</h2>
+                    </div>
+                </div>
+                <div class="producer-card">
+                    <div class="img">
+                        <img src="imgs/producer-card-img-8.png" alt="producer card image">
+                    </div>
+                    <div class="card-content">
+                        <h2 class="h2-title">田原市野田町</h2>
+                        <h2 class="h2-subtitle">彦太郎</h2>
+                        <h2 class="h2-desc">渥美半島の田原市で、夫婦でお米とブロッコリーを生産しています。 常春の地ですくすくと育つお米や野菜を是...非食べてみて下さ</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <p class="footer-p">SNSでシェアしよう！</p>
+        <div class="iconlist">
+            <div class="footer-icon">
+                <a href="https://x.com/" target="_blank">
+                    <img src="imgs/footer-X-icon.svg" alt="X icon">
+                </a>
+            </div>
+            <div class="footer-icon">
+                <a href="https://www.line.me" target="_blank">
+                    <img src="imgs/footer-LINE-icon.svg" alt="LINE icon">
+                </a>
+            </div>
+            <div class="footer-icon">
+                <a href="facebook.com" target="_blank">
+                    <img src="imgs/footer-F-icon.svg" alt="Facebook icon">
+                </a>
+            </div>
+        </div>
+        <p class="copyright">Copyright © 2025 vivid garden Inc.</p>
+    </footer>
 </body>
+
 </html>
