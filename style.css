@@ -286,7 +286,7 @@ h6 {
 /* .flower-section  */
 
 .flower-section {
-  padding: 191px 0 120px;
+  padding: 191px 0 50px;
   background-image: url(imgs/flowers-section-background-img.png);
   background-repeat: no-repeat;
   background-position: top center;
@@ -510,17 +510,17 @@ h6 {
 .flower-section .content .right-side .flower-img-6 {
   width: 116%;
 }
-
+/* .third-section */
 .third-section {
   background-color: #e1c8cc6e;
   background-image: url(imgs/third-section-background-img.png);
   background-size: cover;
   background-position: center center;
-  padding: 100px 0;
+  padding: 121px 0;
 }
 
 .third-section .heading-div .img-1 {
-  margin-bottom: 20px;
+  margin-bottom: 22px;
   justify-self: center;
   display: block;
 }
@@ -534,28 +534,29 @@ h6 {
   background-image: url(imgs/third-section-content-background-img.png);
   background-repeat: no-repeat;
   background-position: top;
-  background-size: cover;
+  background-size: contain;
   border-radius: 20px;
-  padding: 270px 50px 50px 50px;
+  margin: -6px 221px 0;
+  padding: 201px 50px 50px 50px;
 }
 .third-section .content .part-1 {
   margin-left: auto;
   width: fit-content;
 }
 .third-section .content .part-1 .p1-text {
-  width: fit-content;
+  width: 218px;
   font-size: 16px;
   letter-spacing: 0px;
-  line-height: 30px;
+  line-height: 26px;
   color: #222222;
   font-weight: 500;
   font-family: var(--kiwi-maru);
-  margin-bottom: 20px;
+  margin-bottom: 17px;
 }
 .third-section .content .part-1-button {
   display: block;
-  width: 166px;
-  height: 38px;
+  width: 170px;
+  height: 40px;
   border-radius: 21px;
   border: 2px solid #db1d73;
   background-color: #db1d73;
@@ -588,11 +589,12 @@ h6 {
   stroke: #db1d73;
 }
 .third-section .content .cards-section {
-  margin-top: 0px;
+  margin-top: -45px;
 }
 .third-section .cards-section .h2-title {
   font-size: 28px;
-  letter-spacing: 1px;
+  letter-spacing: 0px;
+  padding-left: 16px;
   line-height: 40px;
   color: #db1d7d;
   font-weight: 500;
@@ -601,19 +603,21 @@ h6 {
 }
 .third-section .cards-section .h2-subtitle {
   font-size: 28px;
-  letter-spacing: 1px;
+  letter-spacing: -1px;
+  padding-left: 11px;
   line-height: 40px;
   color: #111;
   font-weight: 500;
   font-family: "var(--kiwi-maru)";
   text-align: center;
-  margin-bottom: 50px;
+  margin-bottom: 57px;
 }
 .third-section .cards-section .cards-container {
   display: flex;
   flex-direction: row;
-  gap: 20px;
+  gap: 15px;
   justify-content: space-between;
+  padding: 0 45px 0 65px;
 }
 .third-section .cards-section .my-card {
   border-radius: 20px;
@@ -627,7 +631,7 @@ h6 {
 }
 .third-section .my-card .card-img img {
   width: 100%;
-  min-height: 200px;
+  min-height: 130px;
   transition: 0.7s ease;
 }
 .third-section .my-card .card-img:hover img {
@@ -644,7 +648,7 @@ h6 {
   position: absolute;
   top: 0;
   left: 0;
-  transform: translate(-40%, -40%);
+  transform: translate(-37%, -56%);
   z-index: 2;
 }
 .third-section .my-card .card-tag .tag-text {
@@ -670,12 +674,14 @@ h6 {
   line-height: 16px;
 }
 .third-section .my-card .card-content {
-  padding-top: 20px;
+  padding-top: 13px;
 }
 .third-section .my-card .card-content .card-title {
   font-size: 16px;
   letter-spacing: 1px;
   line-height: 25px;
+  height: 100px;
+  overflow: hidden;
   color: #222222;
   font-weight: 300;
   font-family: "var(--kiwi-maru)";
@@ -685,15 +691,14 @@ h6 {
   text-decoration: underline;
 }
 .third-section .cards-container .arrow-btwn-card {
-  display: flex;
-  align-items: center;
+  padding-top: 67px;
 }
 .third-section .content .main-card {
   min-height: 250px;
   border-radius: 20px;
   background-color: #fffdf4;
   border: 2px solid #fdd93f;
-  margin-top: 80px;
+  margin: 30px 15px 30px 15px;
   display: flex;
   justify-content: space-between;
   padding: 0 30px;
@@ -735,7 +740,7 @@ h6 {
 }
 .third-section .main-card .text-div .heading {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   font-family: "var(--kiwi-maru)";
   margin-bottom: 20px;
 }
@@ -746,18 +751,21 @@ h6 {
   font-weight: 700;
   font-family: "var(--kiwi-maru)";
   text-align: center;
+  transform: translate(-10px, 3px);
 }
 .third-section .main-card .text-div .h2-title span {
   font-size: 30px;
-  letter-spacing: 2px;
+  letter-spacing: -2px;
   line-height: 35px;
   color: #db1d73;
-  margin: 0 10px;
+  margin: 0 5px;
 }
 .third-section .main-card .text-div .h2-subtitle {
   font-size: 28px;
-  letter-spacing: 2px;
-  line-height: 35px;
+  letter-spacing: -1.3px;
+  margin-left: -12px;
+  line-height: 32px;
+  padding-bottom: 12px;
   color: #222222;
   font-weight: 700;
   text-align: center;
