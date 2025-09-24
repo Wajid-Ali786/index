@@ -64,7 +64,7 @@ h6 {
   flex-direction: column;
   justify-content: center;
   height: 100%;
-  padding: 150px 0;
+  padding: 106px 55px;
   position: relative;
 }
 
@@ -73,9 +73,12 @@ h6 {
   line-height: 107px;
   color: #333333;
   font-weight: 700;
+  letter-spacing: -12px;
   font-family: var(--zen-maru-gothic);
 }
-
+.banner .banner-h2.second {
+  letter-spacing: -10.7px;
+}
 .banner .banner-h2-last {
   display: flex;
   align-items: center;
@@ -85,50 +88,51 @@ h6 {
   font-size: 50px;
   color: #333333;
   font-weight: 700;
+  padding-left: 2px;
   font-family: var(--inter);
+  margin-top: 4px;
 }
 
 .banner .banner-h2-last .db-text {
-  margin: 0 10px 0 10px;
+  margin: 8px 14px 0 5px;
   font-size: 30px;
   line-height: 25px;
   color: #333333;
   font-weight: 700;
   font-family: var(--inter);
-  text-align: center;
 }
 
 .banner .banner-h2-last .db-text .p-2nd {
-  font-size: 18px;
-  font-weight: 500;
+  font-size: 12px;
+  font-weight: 700;
 }
 
 .banner .dropdown {
-  width: 300px;
+  width: 270px;
   background-color: #fff;
   padding-bottom: 30px;
   position: absolute;
-  bottom: 0;
-  right: 0;
-  transform: translateY(120%);
+  bottom: -95%;
+  right: 55px;
 }
 
 .banner .dropdown .dropdown-bar {
   height: 5px;
   background-color: #07913a;
+  margin-bottom: 10px;
 }
 
 .banner .dropdown .dropdown-content p {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin: 5px 10px;
-  min-height: 60px;
+  margin: -5px 20px 5px;
+  height: 60px;
   border-bottom: 1px solid #ddd;
 }
 
 .banner .dropdown .dropdown-content p a {
-  font-size: 19px;
+  font-size: 17px;
   letter-spacing: 1px;
   line-height: 24px;
   color: #333333;
@@ -158,13 +162,14 @@ h6 {
 /* .intro-section */
 
 .intro-section {
-  padding: 80px 15px 120px;
+  padding: 70px 15px 120px;
 }
 
 .intro-section .content {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  align-items: flex-end;
 }
 
 .intro-section .itro-column {
@@ -174,13 +179,18 @@ h6 {
 }
 
 .intro-section .itro-column.first {
-  width: 20%;
+  width: 18%;
 }
 
 .intro-section .itro-column.Second {
-  width: 44%;
+  width: 46%;
+  padding-left: 28px;
 }
-
+.intro-section .itro-column.Second .text-div {
+  margin-top: -2px;
+  margin-left: 3px;
+  padding-bottom: 6px;
+}
 .intro-section .itro-column.third {
   width: 32%;
 }
@@ -215,12 +225,16 @@ h6 {
 
 .intro-section .itro-column.Second .text-div .title {
   font-size: 30px;
-  letter-spacing: 1px;
+  letter-spacing: -1.2px;
   line-height: 38px;
   color: #07913a;
   font-weight: 700;
   font-family: var(--zen-maru-gothic);
   margin-bottom: 20px;
+}
+.intro-section .itro-column.Second .text-div .title span {
+  margin-left: -11px;
+  letter-spacing: -1.9px;
 }
 
 .intro-section .itro-column.Second .text-div .subtitle {
@@ -229,7 +243,7 @@ h6 {
   line-height: 34px;
   color: #333333;
   font-family: var(--hira-kaku-pro-n);
-  padding-right: 50px;
+  padding-right: 105px;
 }
 
 .intro-section .itro-column.third .two-column {
