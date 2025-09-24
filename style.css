@@ -1,7 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Kiwi+Maru&family=Noto+Color+Emoji&family=Noto+Sans+JP:wght@100..900&family=Ultra&family=Zen+Kaku+Gothic+New&family=Zen+Maru+Gothic&display=swap");
+
 body {
   margin: 0;
 }
-
+:root {
+  --zen-maru-gothic: "Zen Maru Gothic", sans-serif;
+  --noto-sans-jp: "Noto Sans JP", sans-serif;
+  --inter: "Inter", sans-serif;
+  --hira-kaku-pro-n: "Zen Kaku Gothic New", sans-serif;
+  --kiwi-maru: "Kiwi Maru", serif;
+  --euphorigenic: "Ultra", serif;
+  --noto-color-emoji: "Noto Color Emoji", sans-serif;
+}
 p,
 h1,
 h2,
@@ -26,10 +36,11 @@ h6 {
   height: 50px;
   display: flex;
   align-items: center;
+  padding-left: 71px;
 }
 
 .header .logo {
-  margin-right: 20px;
+  margin-right: 17px;
 }
 
 .logo-text {
@@ -37,7 +48,7 @@ h6 {
   letter-spacing: 1px;
   color: #333333;
   font-weight: 500;
-  font-family: "Noto Sans JP";
+  font-family: var(--noto-sans-jp);
 }
 /* banner */
 .banner {
@@ -62,7 +73,7 @@ h6 {
   line-height: 107px;
   color: #333333;
   font-weight: 700;
-  font-family: "Zen Maru Gothic";
+  font-family: var(--zen-maru-gothic);
 }
 
 .banner .banner-h2-last {
@@ -74,7 +85,7 @@ h6 {
   font-size: 50px;
   color: #333333;
   font-weight: 700;
-  font-family: "Inter";
+  font-family: var(--inter);
 }
 
 .banner .banner-h2-last .db-text {
@@ -83,7 +94,7 @@ h6 {
   line-height: 25px;
   color: #333333;
   font-weight: 700;
-  font-family: "Inter";
+  font-family: var(--inter);
   text-align: center;
 }
 
@@ -122,7 +133,7 @@ h6 {
   line-height: 24px;
   color: #333333;
   font-weight: 700;
-  font-family: "Zen Maru Gothic";
+  font-family: var(--zen-maru-gothic);
   text-decoration: none;
   transition: 0.3s ease;
 }
@@ -141,7 +152,7 @@ h6 {
   letter-spacing: 0px;
   line-height: 40px;
   padding: 0 5px;
-  font-family: "Hira Kaku Pro N";
+  font-family: var(--hira-kaku-pro-n);
   text-align: center;
 }
 /* .intro-section */
@@ -208,7 +219,7 @@ h6 {
   line-height: 38px;
   color: #07913a;
   font-weight: 700;
-  font-family: "Zen Maru Gothic";
+  font-family: var(--zen-maru-gothic);
   margin-bottom: 20px;
 }
 
@@ -217,7 +228,7 @@ h6 {
   letter-spacing: 0px;
   line-height: 34px;
   color: #333333;
-  font-family: "Hira Kaku Pro";
+  font-family: var(--hira-kaku-pro-n);
   padding-right: 50px;
 }
 
@@ -241,7 +252,7 @@ h6 {
   text-align: left;
   color: #333333;
   font-weight: 700;
-  font-family: "Zen Maru Gothic";
+  font-family: var(--zen-maru-gothic);
 }
 
 .intro-section .itro-column.third .text-div .text.second {
@@ -254,7 +265,7 @@ h6 {
   text-align: right;
   color: #07913a;
   font-weight: 600;
-  font-family: "Zen Maru Gothic";
+  font-family: var(--zen-maru-gothic);
 }
 /* .flower-section  */
 
@@ -272,7 +283,7 @@ h6 {
   font-size: 30px;
   font-weight: 700;
   line-height: 40px;
-  font-family: "Zen Maru Gothic";
+  font-family: var(--zen-maru-gothic);
   text-align: center;
   width: fit-content;
   margin: 0 auto;
@@ -303,7 +314,7 @@ h6 {
   letter-spacing: 1px;
   color: #111111;
   font-weight: 700;
-  font-family: "Zen Maru Gothic";
+  font-family: var(--zen-maru-gothic);
   width: fit-content;
   margin: 0 auto;
   padding: 0 10px;
@@ -325,7 +336,7 @@ h6 {
   letter-spacing: 1px;
   color: #ff91a8;
   font-weight: 600;
-  font-family: "Inter";
+  font-family: var(--inter);
 }
 
 .flower-section .content .left-side .p_flowers {
@@ -333,7 +344,7 @@ h6 {
   font-size: 22px;
   color: #db5b85;
   font-weight: 700;
-  font-family: "Inter";
+  font-family: var(--inter);
 }
 
 .flower-section .content .left-side .p_flowers-2 {
@@ -341,7 +352,7 @@ h6 {
   letter-spacing: 2px;
   color: #111111;
   font-weight: 700;
-  font-family: "Zen Maru Gothic";
+  font-family: var(--zen-maru-gothic);
 }
 
 .flower-section .content .left-side .flower-img-1 {
@@ -375,7 +386,7 @@ h6 {
   line-height: 40px;
   color: #111111;
   font-weight: 700;
-  font-family: "Zen Maru Gothic";
+  font-family: var(--zen-maru-gothic);
   width: fit-content;
   margin-bottom: 20px;
   position: relative;
@@ -401,7 +412,7 @@ h6 {
   line-height: 35px;
   font-weight: 700;
   color: #111111;
-  font-family: "Hira Kaku Pro N";
+  font-family: var(--hira-kaku-pro-n);
 }
 
 .flower-section .content .left-side .flower-img-3 {
@@ -416,7 +427,7 @@ h6 {
   font-size: 35px;
   color: #ffae00;
   font-weight: 600;
-  font-family: "Inter";
+  font-family: var(--inter);
   text-align: right;
 }
 
@@ -425,7 +436,7 @@ h6 {
   font-size: 22px;
   color: #ff6c00;
   font-weight: 700;
-  font-family: "Inter";
+  font-family: var(--inter);
   text-align: right;
 }
 
@@ -434,7 +445,7 @@ h6 {
   letter-spacing: 2px;
   color: #333333;
   font-weight: 700;
-  font-family: "Zen Maru Gothic";
+  font-family: var(--zen-maru-gothic);
   text-align: right;
 }
 .flower-section .content .right-side .flower-img-4 {
@@ -446,7 +457,7 @@ h6 {
   font-size: 35px;
   color: #7ebd58;
   font-weight: 600;
-  font-family: "Inter";
+  font-family: var(--inter);
   text-align: left;
 }
 
@@ -455,7 +466,7 @@ h6 {
   font-size: 22px;
   color: #469d3f;
   font-weight: 700;
-  font-family: "Inter";
+  font-family: var(--inter);
   text-align: left;
 }
 
@@ -464,7 +475,7 @@ h6 {
   letter-spacing: 2px;
   color: #333333;
   font-weight: 700;
-  font-family: "Zen Maru Gothic";
+  font-family: var(--zen-maru-gothic);
   text-align: left;
 }
 
@@ -519,7 +530,7 @@ h6 {
   line-height: 30px;
   color: #222222;
   font-weight: 500;
-  font-family: "Kiwi Maru";
+  font-family: var(--kiwi-maru);
   margin-bottom: 20px;
 }
 .third-section .content .part-1-button {
@@ -534,7 +545,7 @@ h6 {
   line-height: 40px;
   color: #ffffff;
   font-weight: 500;
-  font-family: "Kiwi Maru";
+  font-family: "var(--kiwi-maru)";
   text-align: center;
   text-decoration: none;
   transition: 0.3s ease;
@@ -566,7 +577,7 @@ h6 {
   line-height: 40px;
   color: #db1d7d;
   font-weight: 500;
-  font-family: "Kiwi Maru";
+  font-family: "var(--kiwi-maru)";
   text-align: center;
 }
 .third-section .cards-section .h2-subtitle {
@@ -575,7 +586,7 @@ h6 {
   line-height: 40px;
   color: #111;
   font-weight: 500;
-  font-family: "Kiwi Maru";
+  font-family: "var(--kiwi-maru)";
   text-align: center;
   margin-bottom: 50px;
 }
@@ -622,7 +633,7 @@ h6 {
   font-size: 18px;
   letter-spacing: 1px;
   color: #ffffff;
-  font-family: "Euphorigenic";
+  font-family: var(--euphorigenic);
   font-style: italic;
 }
 .third-section .my-card .card-tag.step-2 {
@@ -648,7 +659,7 @@ h6 {
   line-height: 25px;
   color: #222222;
   font-weight: 300;
-  font-family: "Kiwi Maru";
+  font-family: "var(--kiwi-maru)";
   transition: 0.3s ease;
 }
 .third-section .my-card .card-content .card-title:hover {
@@ -706,7 +717,7 @@ h6 {
 .third-section .main-card .text-div .heading {
   display: flex;
   align-items: center;
-  font-family: "Kiwi Maru";
+  font-family: "var(--kiwi-maru)";
   margin-bottom: 20px;
 }
 .third-section .main-card .text-div .h2-title {
@@ -714,7 +725,7 @@ h6 {
   line-height: 35px;
   color: #ed70af;
   font-weight: 700;
-  font-family: "Kiwi Maru";
+  font-family: "var(--kiwi-maru)";
   text-align: center;
 }
 .third-section .main-card .text-div .h2-title span {
@@ -739,7 +750,7 @@ h6 {
   line-height: 28px;
   color: #222222;
   font-weight: 500;
-  font-family: "Kiwi Maru";
+  font-family: "var(--kiwi-maru)";
   text-align: center;
   margin-bottom: 20px;
 }
@@ -749,7 +760,7 @@ h6 {
   line-height: 35px;
   color: #222222;
   font-weight: 700;
-  font-family: "Kiwi Maru";
+  font-family: "var(--kiwi-maru)";
   text-align: center;
   text-decoration: none;
   position: relative;
@@ -803,7 +814,7 @@ h6 {
   line-height: 40px;
   color: #ffffff;
   font-weight: 700;
-  font-family: "Zen Maru Gothic";
+  font-family: var(--zen-maru-gothic);
   text-align: center;
   width: fit-content;
   margin: 0 auto;
@@ -834,7 +845,7 @@ h6 {
   letter-spacing: 1px;
   color: #111111;
   font-weight: 700;
-  font-family: "Zen Maru Gothic";
+  font-family: var(--zen-maru-gothic);
   width: fit-content;
   margin: 0 auto;
   padding: 0 10px;
@@ -875,14 +886,14 @@ h6 {
   letter-spacing: 0px;
   line-height: 35px;
   color: #222222;
-  font-family: "Hira Kaku Pro N";
+  font-family: var(--hira-kaku-pro-n);
 }
 .producer-section .producer-card .h2-subtitle {
   font-size: 18px;
   letter-spacing: 1px;
   line-height: 35px;
   color: #e9748d;
-  font-family: "Hira Kaku Pro N";
+  font-family: var(--hira-kaku-pro-n);
   margin-bottom: 20px;
 }
 .producer-section .producer-card .h2-desc {
@@ -890,7 +901,7 @@ h6 {
   letter-spacing: 0px;
   line-height: 26px;
   color: #222222;
-  font-family: "Noto Color Emoji";
+  font-family: var(--noto-color-emoji);
 }
 /* footer */
 footer {
@@ -906,7 +917,7 @@ footer .footer-p {
   font-size: 16px;
   line-height: 26px;
   color: #ffffff;
-  font-family: "Hira Kaku Pro N";
+  font-family: var(--hira-kaku-pro-n);
 }
 footer .iconlist {
   display: flex;
@@ -922,5 +933,5 @@ footer .copyright {
   font-size: 15px;
   color: #ffffff;
   font-weight: 500;
-  font-family: "Inter";
+  font-family: var(--inter);
 }
