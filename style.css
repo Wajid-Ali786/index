@@ -714,6 +714,8 @@ header .logo-text {
 .third-section .content .part-1 {
   margin-left: auto;
   width: fit-content;
+  position: relative;
+  z-index: 10;
 }
 .third-section .content .part-1 .p1-text {
   width: 208px;
@@ -726,7 +728,7 @@ header .logo-text {
   margin-bottom: 16px;
 }
 .third-section .content .part-1-button {
-  display: block;
+  display: inline-block;
   width: 170px;
   height: 36px;
   border-radius: 21px;
@@ -1263,12 +1265,50 @@ footer .footer-icon {
   width: 40px;
   height: 40px;
   border-radius: 100px;
+  transition: 0.5s ease;
+}
+footer .footer-icon:hover {
+  transform: scale(1.1);
+}
+footer .footer-icon img{
+  width: 100%;
 }
 footer .copyright {
   font-size: 15px;
   color: #ffffff;
   font-weight: 500;
   font-family: var(--inter);
+}
+/* animations */
+.slide-up,
+.zoom-in {
+  opacity: 0;
+  transition: all 0.8s ease;
+}
+
+.slide-up {
+  transform: translateY(40px);
+}
+.slide-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.zoom-in {
+  transform: scale(0.9);
+}
+.zoom-in.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.cta {
+  display: inline-block;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+.cta:hover {
+  transform: scale(1.1) !important;
 }
 
 /* Responsive */
