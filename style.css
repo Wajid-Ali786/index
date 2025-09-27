@@ -815,10 +815,10 @@ header .logo-text {
   transform: scale(1.05);
 }
 .third-section .my-card .card-tag {
-  background-color: #df8fc7;
+  /* background-color: #df8fc7; */
   border-radius: 50px;
-  width: 60px;
-  height: 60px;
+  width: 70px;
+  height: 70px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -827,6 +827,9 @@ header .logo-text {
   left: 0;
   transform: translate(-37%, -59%);
   z-index: 2;
+  background-image: url(imgs/step-1-background.svg);
+  background-position: center;
+  background-repeat: no-repeat;
 }
 .third-section .my-card .card-tag .tag-text {
   text-align: center;
@@ -837,13 +840,18 @@ header .logo-text {
   font-style: italic;
 }
 .third-section .my-card .card-tag.step-2 {
-  background-color: #e77c7c;
+  /* background-color: #e77c7c; */
+  background-image: url(imgs/step-2-background.svg);
+
 }
 .third-section .my-card .card-tag.step-3 {
-  background-color: #f48453;
+  /* background-color: #f48453; */
+  background-image: url(imgs/step-3-background.svg);
+
 }
 .third-section .my-card .card-tag.step-4 {
-  background-color: #f4aa53;
+  /* background-color: #f4aa53; */
+  background-image: url(imgs/step-4-background.svg);
 }
 .third-section .my-card .card-tag .tag-text span {
   display: block;
