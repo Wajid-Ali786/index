@@ -741,7 +741,7 @@ header .logo-text a:hover {
   justify-content: center;
   padding: 0px 35.6px;
   height: 36px;
-  border-radius: 21px;
+  border-radius: 100px;
   border: 2px solid #db1d73;
   background-color: #db1d73;
   font-size: 15px;
@@ -2383,16 +2383,19 @@ footer .copyright {
   }
   footer {
     height: 350px;
-    justify-content: start;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    padding: 10px 10px;
   }
   footer .footer-p {
     font-size: 28.5px;
     font-weight: 700;
-    margin-top: 69px;
+    margin: 0;
   }
   footer .iconlist {
     gap: 30px;
-    margin-top: 13px;
+    margin: 0;
   }
   footer .footer-icon {
     width: 80px;
@@ -2403,7 +2406,8 @@ footer .copyright {
   }
   footer .copyright {
     font-size: 24px;
-    margin-top: 77px;
+    margin: 0;
+    text-align: center;
     line-height: 40px;
   }
 }
@@ -2427,9 +2431,13 @@ footer .copyright {
   .banner {
     background-position: 100%;
   }
+
+  .banner .content {
+    padding: 120px 0px 50px 30px;
+  }
   .banner .banner-h2,
   .banner .banner-h2.second {
-    font-size: 60px;
+    font-size: 50px;
     letter-spacing: -1px;
   }
   .banner .banner-h2-last .p {
@@ -2445,11 +2453,15 @@ footer .copyright {
   .banner .banner-logo {
     max-width: 28%;
   }
+  .banner .dropdown .dropdown-content p {
+    margin: 0 20px;
+    min-height: 80px;
+  }
   .banner .dropdown .dropdown-content p img {
-    width: 30px;
+    width: 25px;
   }
   .banner .dropdown .dropdown-content p a {
-    font-size: 25px;
+    font-size: 22px;
     letter-spacing: -1px;
   }
 
@@ -2673,7 +2685,38 @@ footer .copyright {
     font-size: 22px;
     line-height: 10px;
   }
-  .producer-section .card-container .producer-card {
+  .third-section .content .main-card {
+    margin: 64px auto;
+    width: 95%;
+    padding: 0;
+  }
+  .third-section .main-card .text-div {
+    width: 95%;
+  }
+  .third-section .main-card .text-div .heading .text {
+    width: max-content;
+  }
+  .third-section .main-card .img-div-1 {
+    width: 140px;
+    height: 140px;
+    top: 95px;
+    left: -60px;
+  }
+  .third-section .main-card .img-div-2 {
+    width: 140px;
+    height: 140px;
+    bottom: 120px;
+    right: -40px;
+  }
+  /* .producer-section .card-container .producer-card {
     width: 100%;
+  } */
+  footer {
+    gap: 30px;
+    min-height: 300px;
+  }
+  footer .footer-icon {
+    width: 60px;
+    height: 60px;
   }
 }

@@ -1,38 +1,40 @@
-/* products.css — Japanese-inspired design */
-
-/* ---- Variables ---- */
 :root {
-  --accent: #7b5d42; /* warm brown ink */
-  --accent-light: #a58b6f; /* lighter accent */
-  --bg: #fdfbf7; /* washi paper tone */
-  --surface: #faf6f0; /* section background */
-  --border: #e0d7c8; /* subtle divider */
-  --text: #2b2119; /* deep brown-black */
+  --accent: #7b5d42;
+  --accent-light: #a58b6f;
+  --bg: #fdfbf7;
+  --surface: #faf6f0;
+  --border: #e0d7c8;
+  --text: #2b2119;
   --muted: #766f66;
   --radius: 6px;
   --container: 1100px;
   --font-sans: "Noto Sans JP", "Yu Gothic", system-ui, sans-serif;
   --font-serif: "Kiwi Maru", "Noto Serif JP", serif;
 }
-
-/* ---- Base ---- */
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
+}
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
 }
 body {
   font-family: var(--font-sans);
   background: var(--bg);
   color: var(--text);
   line-height: 1.8;
+  margin: 0;
   -webkit-font-smoothing: antialiased;
 }
 .container {
   max-width: var(--container);
   margin: 0 auto;
-  padding-left: 20px !important;
-  padding-right: 20px !important;
+  padding: 0 20px;
 }
 
 .header {
@@ -60,12 +62,11 @@ header .logo-text a {
 header .logo-text a:hover {
   text-decoration: underline;
 }
-/* ---- Hero ---- */
 .hero {
   background: var(--surface);
   padding: 60px 20px;
-  text-align: center;
   border-bottom: 1px solid var(--border);
+  text-align: center;
 }
 .hero h1 {
   font-family: var(--font-serif);
@@ -77,79 +78,54 @@ header .logo-text a:hover {
   color: var(--muted);
   font-size: 1.05rem;
 }
-.hero-image img {
+.hero .hero-image img {
   margin-top: 24px;
   width: 100%;
   max-width: 880px;
   border-radius: var(--radius);
   border: 1px solid var(--border);
-  display: block;
-  justify-self: center;
 }
 
-/* intro-split: left 65% / right 35% layout (generic, not "about") */
-.intro-split {
+.about-intro {
+  padding: 60px 0;
+}
+.about-intro .container {
   display: flex;
-  gap: 28px;
-  align-items: center;
-  justify-content: center;
-  padding: 36px 20px;
-  border-bottom: 1px solid var(--border);
-  background: transparent;
-  margin: 50px auto;
+  justify-content: space-between;
+  gap: 20px;
+}
+.about-intro .about-intro-content {
+  width: 65%;
 }
 
-.intro-split .intro-left {
-  width: 60%;
-  text-align: left;
-}
-.intro-split h2 {
+.about-intro h2 {
   font-family: var(--font-serif);
+  font-size: 1.8rem;
   color: var(--accent);
-  font-size: 1.6rem;
-  margin-bottom: 10px;
-}
-.intro-split .intro-lead {
-  color: var(--muted);
-  font-size: 1rem;
   margin-bottom: 16px;
 }
-.intro-split .intro-actions {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-  margin-top: 6px;
-}
-.intro-split .btn.small {
-  padding: 8px 14px;
-  font-size: 0.95rem;
-  border-radius: 999px;
-}
-.intro-split .btn.ghost {
-  background: transparent;
-  color: var(--accent);
-  border: 1px solid var(--border);
+.about-intro p {
+  font-size: 1.05rem;
+  color: var(--text);
+  margin-bottom: 20px;
 }
 
-.intro-split .dropdown-container {
-  width: 40%;
+.about-intro .dropdown-container {
+  width: 35%;
 }
-.intro-split .intro-actions {
-  justify-content: center;
-}
-.intro-split .dropdown {
+.about-intro .dropdown {
   width: fit-content;
   background-color: #fff;
   padding-bottom: 30px;
   justify-self: flex-end;
 }
-.intro-split .dropdown .dropdown-bar {
+.about-intro .dropdown .dropdown-bar {
   height: 5px;
   background-color: #07913a;
   margin-bottom: 10px;
 }
 
-.intro-split .dropdown .dropdown-content p {
+.about-intro .dropdown .dropdown-content p {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -158,7 +134,7 @@ header .logo-text a:hover {
   border-bottom: 1px solid #ddd;
 }
 
-.intro-split .dropdown .dropdown-content p a {
+.about-intro .dropdown .dropdown-content p a {
   font-size: 17px;
   letter-spacing: 1px;
   line-height: 24px;
@@ -169,74 +145,81 @@ header .logo-text a:hover {
   transition: 0.3s ease;
 }
 
-.intro-split .dropdown .dropdown-content p a:hover {
+.about-intro .dropdown .dropdown-content p a:hover {
   color: #07913a;
 }
 
-/* ---- Specialties ---- */
-.specialties {
-  padding: 60px 20px;
-  text-align: center;
+.about-history {
+  background: var(--surface);
+  padding: 60px 0;
+  border-top: 1px solid var(--border);
 }
-.specialties h2 {
+.about-history h2 {
   font-family: var(--font-serif);
-  font-size: 1.8rem;
+  font-size: 1.6rem;
+  margin-bottom: 12px;
   color: var(--accent);
-  margin-bottom: 32px;
 }
-.specialties-grid {
+.about-history p {
+  color: var(--text);
+  margin-bottom: 12px;
+}
+.about-history ul {
+  list-style: "◆ ";
+  margin-left: 1em;
+  color: var(--accent-light);
+}
+
+.about-attractions {
+  padding: 60px 0;
+}
+.attractions-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 28px;
 }
-.specialty-card {
+.attraction-card {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   overflow: hidden;
+  text-align: center;
   transition: transform 0.2s ease;
 }
-.specialty-card:hover {
+.attraction-card:hover {
   transform: translateY(-4px);
 }
-.specialty-card img {
+.attraction-card img {
   width: 100%;
-  height: 300px;
+  height: 180px;
   object-fit: cover;
-  margin-bottom: 14px;
 }
-.specialty-card h3 {
+.attraction-card h3 {
   font-family: var(--font-serif);
   font-size: 1.2rem;
-  margin-bottom: 8px;
+  margin: 14px 0 6px;
   color: var(--accent);
-  padding: 0px 20px;
 }
-.specialty-card p {
+.attraction-card p {
   font-size: 0.95rem;
   color: var(--text);
-  padding: 0px 20px 28px;
+  padding: 0 14px 20px;
 }
 
-/* ---- Highlight ---- */
-.highlight {
+.about-lifestyle {
   padding: 60px 0;
+  background: var(--surface);
   border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
 }
-.highlight h2 {
+.about-lifestyle h2 {
   font-family: var(--font-serif);
   font-size: 1.6rem;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
   color: var(--accent);
-  text-align: center;
 }
-.highlight p {
-  max-width: 70ch;
-  margin: 0 auto;
-  font-size: 1.05rem;
+.about-lifestyle p {
   color: var(--text);
-  text-align: center;
+  max-width: 72ch;
 }
 
 /* footer */
@@ -350,56 +333,53 @@ footer .copyright {
     margin-bottom: 8px;
     letter-spacing: -1.5px;
   }
-
   .hero h1 {
-    font-size: 1.9rem;
+    font-size: 1.8rem;
   }
   .hero p {
     font-size: 0.95rem;
   }
-  .intro-split {
+  .about-intro .dropdown {
+    width: 100%;
+  }
+  .about-intro .container {
     flex-direction: column;
   }
-  .intro-split .intro-left {
-    width: 100%;
-    text-align: center;
-  }
-  .intro-split .dropdown-container {
+  .about-intro .about-intro-content {
     width: 100%;
   }
-
-  .intro-split .dropdown {
+  .about-intro .dropdown-container {
     width: 100%;
   }
-  .intro-split .dropdown-container {
-    width: 100%;
-  }
-  .intro-split .dropdown .dropdown-bar {
+  .about-intro .dropdown .dropdown-bar {
     height: 10px;
     margin-bottom: 0;
   }
-  .intro-split .dropdown .dropdown-content {
+  .about-intro .dropdown .dropdown-content {
     margin-top: 9px;
   }
-  .intro-split .dropdown .dropdown-content p {
+  .about-intro .dropdown .dropdown-content p {
     margin: 0px 36px 0px 46px;
     padding: 0 0 5px;
-    min-height: 120px;
   }
-  .intro-split .dropdown .dropdown-content p img {
+  .about-intro .dropdown .dropdown-content p img {
     width: 42px;
     margin-left: 3px;
     margin-top: 6px;
   }
-  .intro-split .dropdown .dropdown-content p a {
+  .about-intro .dropdown .dropdown-content p {
+    min-height: 120px;
+  }
+  .about-intro .dropdown .dropdown-content p a {
     font-size: 36px;
     letter-spacing: -2px;
     line-height: 40px;
     font-weight: 700;
   }
-  .specialties-grid {
+  .attractions-grid {
     grid-template-columns: 1fr;
   }
+
   footer {
     height: 350px;
     justify-content: center;
@@ -443,15 +423,14 @@ footer .copyright {
     font-size: 25px;
     margin-bottom: 3px;
   }
-
-  .intro-split .dropdown .dropdown-content p img {
+  .about-intro .dropdown .dropdown-content p {
+    min-height: 80px;
+    margin: 0 20px;
+  }
+  .about-intro .dropdown .dropdown-content p img {
     width: 25px;
   }
-  .intro-split .dropdown .dropdown-content p {
-    margin: 0 20px;
-    min-height: 80px;
-  }
-  .intro-split .dropdown .dropdown-content p a {
+  .about-intro .dropdown .dropdown-content p a {
     font-size: 22px;
     letter-spacing: -1px;
   }

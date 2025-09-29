@@ -295,6 +295,7 @@ header .logo-text a:hover {
 .more-products {
   text-align: center;
   margin-top: 28px;
+  padding: 0 20px;
 }
 .btn-outline {
   display: inline-block;
@@ -402,6 +403,47 @@ footer .copyright {
   font-weight: 500;
   font-family: var(--inter);
 }
+.back-to-home {
+  position: fixed;
+  top: 50%;
+  left: 0;
+  transform: translateY(-80%);
+  background-color: #00174f;
+  color: #fff;
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s ease;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.back-to-home:hover {
+  background-color: #003399;
+  padding-left: 24px;
+}
+
+.back-to-home .icon {
+  font-size: 18px;
+}
+
+@media (max-width: 768px) {
+  .back-to-home {
+    font-size: 13px;
+    padding: 8px 12px;
+    gap: 4px;
+    top: 30%;
+  }
+  .back-to-home .text {
+    display: none;
+  }
+}
 @media (max-width: 1400px) {
   footer {
     height: 150px;
@@ -426,7 +468,7 @@ footer .copyright {
   .page-hero .dropdown {
     width: fit-content;
     margin-top: 18px;
-    padding-bottom: 12px;
+    padding-bottom: 20px;
     bottom: unset;
     left: unset;
     top: 0;
@@ -469,9 +511,13 @@ footer .copyright {
     margin-bottom: 8px;
     letter-spacing: -1.5px;
   }
+  .page-hero .hero-copy {
+    width: 100%;
+  }
   .page-hero .dropdown {
     position: unset;
     width: 100%;
+    margin-top: 0;
   }
   .page-hero .dropdown .dropdown-bar {
     height: 10px;
@@ -483,14 +529,12 @@ footer .copyright {
   .page-hero .dropdown .dropdown-content p {
     margin: 0px 36px 0px 46px;
     padding: 0 0 5px;
+    min-height: 120px;
   }
   .page-hero .dropdown .dropdown-content p img {
     width: 42px;
     margin-left: 3px;
     margin-top: 6px;
-  }
-  .page-hero .dropdown .dropdown-content p {
-    min-height: 120px;
   }
   .page-hero .dropdown .dropdown-content p a {
     font-size: 36px;
@@ -498,18 +542,25 @@ footer .copyright {
     line-height: 40px;
     font-weight: 700;
   }
+  .intro-thumb {
+    width: calc(33% - 10px);
+  }
+
   footer {
     height: 350px;
-    justify-content: start;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    padding: 10px 10px;
   }
   footer .footer-p {
     font-size: 28.5px;
     font-weight: 700;
-    margin-top: 69px;
+    margin: 0;
   }
   footer .iconlist {
     gap: 30px;
-    margin-top: 13px;
+    margin: 0;
   }
   footer .footer-icon {
     width: 80px;
@@ -520,7 +571,8 @@ footer .copyright {
   }
   footer .copyright {
     font-size: 24px;
-    margin-top: 77px;
+    margin: 0;
+    text-align: center;
     line-height: 40px;
   }
 }
@@ -558,11 +610,23 @@ footer .copyright {
     margin-bottom: 3px;
   }
 
+  .page-hero .dropdown .dropdown-content p {
+    min-height: 80px;
+    margin: 0 20px;
+  }
   .page-hero .dropdown .dropdown-content p img {
-    width: 30px;
+    width: 25px;
   }
   .page-hero .dropdown .dropdown-content p a {
-    font-size: 25px;
+    font-size: 22px;
     letter-spacing: -1px;
+  }
+  footer {
+    gap: 30px;
+    min-height: 300px;
+  }
+  footer .footer-icon {
+    width: 60px;
+    height: 60px;
   }
 }

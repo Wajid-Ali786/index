@@ -12,18 +12,18 @@
 </head>
 
 <body>
-    <header class="header">
-        <div class="container">
-            <div class="content">
-                <div class="logo">
-                    <a href="index.html">
-                        <img src="imgs/header-logo.svg" alt="header logo">
-                    </a>
-                </div>
-                <div class="logo-text"><a href="index.html">田原市の特産品</a></div>
-            </div>
+  <header class="header">
+    <div class="container">
+      <div class="content">
+        <div class="logo">
+          <a href="index.html">
+            <img src="imgs/header-logo.svg" alt="header logo">
+          </a>
         </div>
-    </header>
+        <div class="logo-text"><a href="index.html">田原市の特産品</a></div>
+      </div>
+    </div>
+  </header>
 
   <!-- Hero -->
   <section class="hero">
@@ -35,6 +35,41 @@
       <img src="imgs/tahara-city-specialties-banner.png" alt="田原市の風景">
     </div>
   </section>
+
+  <!-- Intro split (left 65% / right 35%) - place BEFORE .hero -->
+  <section class="intro-split container" aria-labelledby="intro-split-title">
+    <div class="intro-left">
+      <h2 id="intro-split-title">田原市のことをもっと知る</h2>
+      <p class="intro-lead">
+        農業と海が育む田原の暮らし。季節ごとの見どころや生産者の声、直売情報などをここでチェックできます。
+      </p>
+
+      <div class="intro-actions">
+        <a href="about.html" class="btn small">田原市について詳しく</a>
+        <a href="special-products.html" class="btn ghost">特産品を探す</a>
+      </div>
+    </div>
+
+    <div class="dropdown-container">
+      <div class="dropdown">
+        <div class="dropdown-bar"></div>
+        <div class="dropdown-content">
+          <p><img src="imgs/banner-dropdown-icon.svg" alt="banner dropdown icon"><a
+              href="special-products.html">田原市のこだわり特産品</a>
+          </p>
+          <p><img src="imgs/banner-dropdown-icon.svg" alt="banner dropdown icon"><a href="about.html">タハナについて</a>
+          </p>
+          <p><img src="imgs/banner-dropdown-icon.svg" alt="banner dropdown icon"><a href="products.html">田原市の特産品</a>
+          </p>
+          <p><img src="imgs/banner-dropdown-icon.svg" alt="banner dropdown icon"><a
+              href="producers.html">田原市のこだわり生産者</a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
 
   <!-- Main specialties -->
   <section class="specialties container">
@@ -88,6 +123,10 @@
     </div>
     <p class="copyright">Copyright © 2025 vivid garden Inc.</p>
   </footer>
+  <a href="index.html" class="back-to-home">
+    <span class="icon">🏠</span>
+    <span class="text">ホームに戻る</span>
+  </a>
 </body>
 
 </html>
