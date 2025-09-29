@@ -1,0 +1,275 @@
+/* products.css — Japanese-inspired design */
+
+/* ---- Variables ---- */
+:root {
+  --accent: #7b5d42; /* warm brown ink */
+  --accent-light: #a58b6f; /* lighter accent */
+  --bg: #fdfbf7; /* washi paper tone */
+  --surface: #faf6f0; /* section background */
+  --border: #e0d7c8; /* subtle divider */
+  --text: #2b2119; /* deep brown-black */
+  --muted: #766f66;
+  --radius: 6px;
+  --container: 1100px;
+  --font-sans: "Noto Sans JP", "Yu Gothic", system-ui, sans-serif;
+  --font-serif: "Kiwi Maru", "Noto Serif JP", serif;
+}
+
+/* ---- Base ---- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+}
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.header {
+  background: #fff;
+}
+
+.header .content {
+  height: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.header .logo {
+  margin-right: 17px;
+}
+
+header .logo-text a {
+  font-size: 16px;
+  letter-spacing: 1px;
+  color: #333333;
+  font-weight: 500;
+  font-family: var(--noto-sans-jp);
+  text-decoration: none;
+}
+header .logo-text a:hover {
+  text-decoration: underline;
+}
+/* ---- Hero ---- */
+.hero {
+  background: var(--surface);
+  padding: 60px 20px;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+}
+.hero h1 {
+  font-family: var(--font-serif);
+  font-size: 2.4rem;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+.hero p {
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+.hero-image img {
+  margin-top: 24px;
+  width: 100%;
+  max-width: 880px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+}
+
+/* ---- Specialties ---- */
+.specialties {
+  padding: 60px 0;
+  text-align: center;
+}
+.specialties h2 {
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  color: var(--accent);
+  margin-bottom: 32px;
+}
+.specialties-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 28px;
+}
+.specialty-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: transform 0.2s ease;
+}
+.specialty-card:hover {
+  transform: translateY(-4px);
+}
+.specialty-card img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  margin-bottom: 14px;
+}
+.specialty-card h3 {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+  color: var(--accent);
+  padding: 0px 20px;
+}
+.specialty-card p {
+  font-size: 0.95rem;
+  color: var(--text);
+  padding: 0px 20px 28px;
+}
+
+/* ---- Highlight ---- */
+.highlight {
+  padding: 60px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.highlight h2 {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  margin-bottom: 16px;
+  color: var(--accent);
+  text-align: center;
+}
+.highlight p {
+  max-width: 70ch;
+  margin: 0 auto;
+  font-size: 1.05rem;
+  color: var(--text);
+  text-align: center;
+}
+
+/* footer */
+footer {
+  height: 200px;
+  background-color: #07913a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+footer .footer-p {
+  font-size: 16px;
+  line-height: 26px;
+  color: #ffffff;
+  font-family: var(--hira-kaku-pro-n);
+  margin-top: 38px;
+  margin-left: 8px;
+  letter-spacing: -1px;
+}
+footer .iconlist {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  margin-top: 4px;
+}
+footer .footer-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 100px;
+  transition: 0.5s ease;
+}
+footer .footer-icon:hover {
+  transform: scale(1.1);
+}
+footer .footer-icon img {
+  width: 100%;
+}
+footer .copyright {
+  font-size: 15px;
+  color: #ffffff;
+  font-weight: 500;
+  font-family: var(--inter);
+}
+
+@media (max-width: 1400px) {
+    footer {
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  footer .footer-p {
+    margin-top: 0;
+  }
+
+}
+@media (max-width: 751px) {
+   .header .content {
+    height: 90px;
+    padding-bottom: 6px;
+  }
+  .header .logo {
+    margin-right: 29px;
+  }
+  .header .logo img {
+    width: 250px;
+  }
+  header .logo-text {
+    font-size: 29px;
+    margin-bottom: 8px;
+    letter-spacing: -1.5px;
+  }
+ 
+  .hero h1 {
+    font-size: 1.9rem;
+  }
+  .hero p {
+    font-size: 0.95rem;
+  }
+  .specialties-grid {
+    grid-template-columns: 1fr;
+  }
+
+  footer {
+    height: 350px;
+    justify-content: start;
+  }
+  footer .footer-p {
+    font-size: 28.5px;
+    font-weight: 700;
+    margin-top: 69px;
+  }
+  footer .iconlist {
+    gap: 30px;
+    margin-top: 13px;
+  }
+  footer .footer-icon {
+    width: 80px;
+    height: 80px;
+  }
+  footer .footer-icon img {
+    width: 100%;
+  }
+  footer .copyright {
+    font-size: 24px;
+    margin-top: 77px;
+    line-height: 40px;
+  }
+}
+
+@media (max-width: 550px) {
+  .header .logo img {
+    width: 100%;
+  }
+  .header .logo {
+    margin-right: 29px;
+    width: 30%;
+  }
+  header .logo-text {
+    font-size: 25px;
+    margin-bottom: 3px;
+  }
+}
